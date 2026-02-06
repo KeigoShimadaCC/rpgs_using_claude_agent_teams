@@ -1,0 +1,96 @@
+{
+  "dialogue_id": "boss_intro",
+  "nodes": [
+    {
+      "id": "start",
+      "speaker": "",
+      "text": "As you reach for the clapper, the air grows cold. A spectral figure materializes.",
+      "choices": null,
+      "next": "archivist_appears"
+    },
+    {
+      "id": "archivist_appears",
+      "speaker": "Archivist Shade",
+      "text": "I am the keeper of what must not be known.",
+      "choices": null,
+      "next": "purpose"
+    },
+    {
+      "id": "purpose",
+      "speaker": "Archivist Shade",
+      "text": "This clapper seals a memory. A wound that time has tried to heal.",
+      "choices": null,
+      "next": "warning"
+    },
+    {
+      "id": "warning",
+      "speaker": "Archivist Shade",
+      "text": "You seek to restore your village. But restoration requires forgetting.",
+      "choices": null,
+      "next": "philosophy"
+    },
+    {
+      "id": "philosophy",
+      "speaker": "Archivist Shade",
+      "text": "Truth is a weapon. Memory is a wound. I guard both.",
+      "choices": null,
+      "next": "choice_presented"
+    },
+    {
+      "id": "choice_presented",
+      "speaker": "Archivist Shade",
+      "text": "If you take it to seal the memory, you choose blindness.",
+      "choices": null,
+      "next": "choice_presented_2"
+    },
+    {
+      "id": "choice_presented_2",
+      "speaker": "Archivist Shade",
+      "text": "If you break the seal, you choose suffering.",
+      "choices": null,
+      "next": "challenge"
+    },
+    {
+      "id": "challenge",
+      "speaker": "Archivist Shade",
+      "text": "Prove you are worthy of this burden.",
+      "choices": null,
+      "next": "battle_start"
+    },
+    {
+      "id": "battle_start",
+      "speaker": "",
+      "text": "The Archivist Shade readies itself for battle.",
+      "choices": null,
+      "next": null
+    },
+    {
+      "id": "defeat",
+      "speaker": "Archivist Shade",
+      "text": "You are... strong. Stronger than I expected.",
+      "choices": null,
+      "next": "release"
+    },
+    {
+      "id": "release",
+      "speaker": "Archivist Shade",
+      "text": "I have guarded this memory for centuries. Now my duty ends.",
+      "choices": null,
+      "next": "final_words"
+    },
+    {
+      "id": "final_words",
+      "speaker": "Archivist Shade",
+      "text": "The choice is yours now. I can no longer decide.",
+      "choices": null,
+      "next": "fade"
+    },
+    {
+      "id": "fade",
+      "speaker": "",
+      "text": "The Archivist Shade fades into mist. The clapper lies before you.",
+      "choices": null,
+      "next": null
+    }
+  ]
+}

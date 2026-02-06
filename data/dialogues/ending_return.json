@@ -1,0 +1,82 @@
+{
+  "dialogue_id": "ending_return",
+  "nodes": [
+    {
+      "id": "start",
+      "speaker": "",
+      "text": "You return to the village, the sealed clapper in hand.",
+      "choices": null,
+      "next": "elder_awaits"
+    },
+    {
+      "id": "elder_awaits",
+      "speaker": "Elder",
+      "text": "You've returned. And you bring the clapper.",
+      "choices": null,
+      "next": "elder_relief"
+    },
+    {
+      "id": "elder_relief",
+      "speaker": "Elder",
+      "text": "You have done well. The village is saved.",
+      "choices": null,
+      "next": "elder_takes"
+    },
+    {
+      "id": "elder_takes",
+      "speaker": "",
+      "text": "The Elder takes the clapper and climbs to the bell tower.",
+      "choices": null,
+      "next": "installation"
+    },
+    {
+      "id": "installation",
+      "speaker": "",
+      "text": "Moments later, the bell rings. Clear. Pure. Familiar.",
+      "choices": null,
+      "next": "restoration"
+    },
+    {
+      "id": "restoration",
+      "speaker": "",
+      "text": "Time flows correctly again. The sun sets at the proper hour.",
+      "choices": null,
+      "next": "elder_thanks"
+    },
+    {
+      "id": "elder_thanks",
+      "speaker": "Elder",
+      "text": "You have saved us. The past is buried, as it should be.",
+      "choices": null,
+      "next": "elder_peace"
+    },
+    {
+      "id": "elder_peace",
+      "speaker": "Elder",
+      "text": "We can live in peace now.",
+      "choices": null,
+      "next": "companion_reaction"
+    },
+    {
+      "id": "companion_reaction",
+      "speaker": "",
+      "text": "The companion stands beside you, gazing at the bell. They say nothing.",
+      "choices": null,
+      "next": "hero_reflection"
+    },
+    {
+      "id": "hero_reflection",
+      "speaker": "",
+      "text": "The bell rings. Everything is as it was.",
+      "choices": null,
+      "next": "final_line"
+    },
+    {
+      "id": "final_line",
+      "speaker": "",
+      "text": "But you know the silence beneath the sound.",
+      "choices": null,
+      "next": null
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2k8v3h7m5q1p"]
+
+[ext_resource type="Script" path="res://scripts/overworld/map_controller.gd" id="1_map_controller"]
+[ext_resource type="PackedScene" uid="uid://c4p3xqh8yw5j8" path="res://scenes/overworld/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://bv7x2h3k8m9n5" path="res://scenes/overworld/npc.tscn" id="3_npc"]
+[ext_resource type="Script" path="res://scripts/overworld/map_trigger.gd" id="4_trigger"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trigger"]
+size = Vector2(32, 16)
+
+[node name="MapAVillage" type="Node2D"]
+script = ExtResource("1_map_controller")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = null
+format = 2
+layer_0/name = "Ground"
+layer_0/tile_data = PackedInt32Array()
+layer_1/name = "Walls"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array()
+
+[node name="GroundDecoration" type="Node2D" parent="."]
+
+[node name="VillageGround" type="Polygon2D" parent="GroundDecoration"]
+color = Color(0.4, 0.6, 0.3, 1)
+polygon = PackedVector2Array(0, 0, 320, 0, 320, 240, 0, 240)
+
+[node name="Path1" type="Polygon2D" parent="GroundDecoration"]
+position = Vector2(120, 0)
+color = Color(0.6, 0.5, 0.4, 1)
+polygon = PackedVector2Array(0, 0, 80, 0, 80, 240, 0, 240)
+
+[node name="Path2" type="Polygon2D" parent="GroundDecoration"]
+position = Vector2(0, 100)
+color = Color(0.6, 0.5, 0.4, 1)
+polygon = PackedVector2Array(0, 0, 320, 0, 320, 40, 0, 40)
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="NorthWall" type="StaticBody2D" parent="Walls"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="WallVisual" type="Polygon2D" parent="Walls/NorthWall"]
+color = Color(0.3, 0.3, 0.3, 1)
+polygon = PackedVector2Array(0, -16, 320, -16, 320, 0, 0, 0)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Walls/NorthWall"]
+polygon = PackedVector2Array(0, -16, 320, -16, 320, 0, 0, 0)
+
+[node name="SouthWall" type="StaticBody2D" parent="Walls"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="WallVisual" type="Polygon2D" parent="Walls/SouthWall"]
+color = Color(0.3, 0.3, 0.3, 1)
+polygon = PackedVector2Array(0, 240, 320, 240, 320, 256, 0, 256)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Walls/SouthWall"]
+polygon = PackedVector2Array(0, 240, 320, 240, 320, 256, 0, 256)
+
+[node name="WestWall" type="StaticBody2D" parent="Walls"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="WallVisual" type="Polygon2D" parent="Walls/WestWall"]
+color = Color(0.3, 0.3, 0.3, 1)
+polygon = PackedVector2Array(-16, 0, 0, 0, 0, 240, -16, 240)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Walls/WestWall"]
+polygon = PackedVector2Array(-16, 0, 0, 0, 0, 240, -16, 240)
+
+[node name="EastWall" type="StaticBody2D" parent="Walls"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="WallVisual" type="Polygon2D" parent="Walls/EastWall"]
+color = Color(0.3, 0.3, 0.3, 1)
+polygon = PackedVector2Array(320, 0, 336, 0, 336, 240, 320, 240)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Walls/EastWall"]
+polygon = PackedVector2Array(320, 0, 336, 0, 336, 240, 320, 240)
+
+[node name="Buildings" type="Node2D" parent="."]
+
+[node name="House1" type="StaticBody2D" parent="Buildings"]
+position = Vector2(40, 40)
+collision_layer = 1
+collision_mask = 0
+
+[node name="HouseVisual" type="Polygon2D" parent="Buildings/House1"]
+color = Color(0.6, 0.4, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 48, 0, 48, 48, 0, 48)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Buildings/House1"]
+polygon = PackedVector2Array(0, 0, 48, 0, 48, 48, 0, 48)
+
+[node name="House2" type="StaticBody2D" parent="Buildings"]
+position = Vector2(232, 40)
+collision_layer = 1
+collision_mask = 0
+
+[node name="HouseVisual" type="Polygon2D" parent="Buildings/House2"]
+color = Color(0.6, 0.4, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 48, 0, 48, 48, 0, 48)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Buildings/House2"]
+polygon = PackedVector2Array(0, 0, 48, 0, 48, 48, 0, 48)
+
+[node name="House3" type="StaticBody2D" parent="Buildings"]
+position = Vector2(40, 152)
+collision_layer = 1
+collision_mask = 0
+
+[node name="HouseVisual" type="Polygon2D" parent="Buildings/House3"]
+color = Color(0.6, 0.4, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 48, 0, 48, 48, 0, 48)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Buildings/House3"]
+polygon = PackedVector2Array(0, 0, 48, 0, 48, 48, 0, 48)
+
+[node name="House4" type="StaticBody2D" parent="Buildings"]
+position = Vector2(232, 152)
+collision_layer = 1
+collision_mask = 0
+
+[node name="HouseVisual" type="Polygon2D" parent="Buildings/House4"]
+color = Color(0.6, 0.4, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 48, 0, 48, 48, 0, 48)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Buildings/House4"]
+polygon = PackedVector2Array(0, 0, 48, 0, 48, 48, 0, 48)
+
+[node name="NPCs" type="Node2D" parent="."]
+
+[node name="ElderNPC" parent="NPCs" instance=ExtResource("3_npc")]
+position = Vector2(160, 60)
+npc_name = "Elder"
+dialogue_id = "elder_intro"
+
+[node name="Sprite2D" parent="NPCs/ElderNPC" index="0"]
+color = Color(0.8, 0.8, 0.8, 1)
+
+[node name="CompanionNPC" parent="NPCs" instance=ExtResource("3_npc")]
+position = Vector2(160, 180)
+npc_name = "Companion"
+dialogue_id = "companion_intro"
+
+[node name="Sprite2D" parent="NPCs/CompanionNPC" index="0"]
+color = Color(0.4, 0.8, 0.4, 1)
+
+[node name="Triggers" type="Node2D" parent="."]
+
+[node name="ToMapB" type="Area2D" parent="Triggers"]
+position = Vector2(280, 120)
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("4_trigger")
+trigger_type = 0
+target_scene = "res://scenes/overworld/map_b_field.tscn"
+spawn_marker_name = "FromMapA"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/ToMapB"]
+shape = SubResource("RectangleShape2D_trigger")
+
+[node name="TriggerVisual" type="Polygon2D" parent="Triggers/ToMapB"]
+color = Color(1, 1, 0, 0.3)
+polygon = PackedVector2Array(-16, -8, 16, -8, 16, 8, -16, 8)
+
+[node name="PlayerSpawn" type="Marker2D" parent="."]
+position = Vector2(40, 120)
+
+[node name="FromMapB" type="Marker2D" parent="."]
+position = Vector2(260, 120)
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(40, 120)
+
+[editable path="NPCs/ElderNPC"]
+[editable path="NPCs/CompanionNPC"]

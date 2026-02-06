@@ -1,0 +1,33 @@
+{
+  "dialogue_id": "boss_defeat",
+  "nodes": [
+    {
+      "id": "start",
+      "speaker": "Archivist Shade",
+      "text": "You are... strong. Stronger than I expected.",
+      "choices": null,
+      "next": "release"
+    },
+    {
+      "id": "release",
+      "speaker": "Archivist Shade",
+      "text": "I have guarded this memory for centuries. Now my duty ends.",
+      "choices": null,
+      "next": "final_words"
+    },
+    {
+      "id": "final_words",
+      "speaker": "Archivist Shade",
+      "text": "The choice is yours now. I can no longer decide.",
+      "choices": null,
+      "next": "fade"
+    },
+    {
+      "id": "fade",
+      "speaker": "",
+      "text": "The Archivist Shade fades into mist. The clapper lies before you.",
+      "choices": null,
+      "next": null
+    }
+  ]
+}

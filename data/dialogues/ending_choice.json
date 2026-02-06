@@ -1,0 +1,93 @@
+{
+  "dialogue_id": "ending_choice",
+  "nodes": [
+    {
+      "id": "start",
+      "speaker": "",
+      "text": "You hold the bell clapper in your hands. Its surface is cold.",
+      "choices": null,
+      "next": "weight"
+    },
+    {
+      "id": "weight",
+      "speaker": "",
+      "text": "You can feel the weight of the sealed memory within it.",
+      "choices": null,
+      "next": "companion_appears"
+    },
+    {
+      "id": "companion_appears",
+      "speaker": "Companion",
+      "text": "So... what will you do?",
+      "choices": null,
+      "next": "companion_explain"
+    },
+    {
+      "id": "companion_explain",
+      "speaker": "Companion",
+      "text": "You can return it to the Elder. Re-seal the memory. Keep the peace.",
+      "choices": null,
+      "next": "companion_explain_2"
+    },
+    {
+      "id": "companion_explain_2",
+      "speaker": "Companion",
+      "text": "Or you can break the seal. Let the truth be known. Whatever it is.",
+      "choices": null,
+      "next": "companion_support"
+    },
+    {
+      "id": "companion_support",
+      "speaker": "Companion",
+      "text": "I trust you. Whatever you choose, I'll stand by you.",
+      "choices": null,
+      "next": "the_choice"
+    },
+    {
+      "id": "the_choice",
+      "speaker": "",
+      "text": "What will you do?",
+      "choices": [
+        {
+          "text": "Return the clapper to the Elder",
+          "next": "choice_return",
+          "set_flag": "returned_memory"
+        },
+        {
+          "text": "Break the seal and free the memory",
+          "next": "choice_free",
+          "set_flag": "freed_memory"
+        }
+      ],
+      "next": null
+    },
+    {
+      "id": "choice_return",
+      "speaker": "",
+      "text": "You decide to return the clapper. The past will remain buried.",
+      "choices": null,
+      "next": "set_made_choice_return"
+    },
+    {
+      "id": "set_made_choice_return",
+      "speaker": "Companion",
+      "text": "...I understand. Maybe some truths aren't meant to be shared.",
+      "choices": null,
+      "next": null
+    },
+    {
+      "id": "choice_free",
+      "speaker": "",
+      "text": "You grasp the clapper firmly and break the seal. Light floods from within.",
+      "choices": null,
+      "next": "set_made_choice_free"
+    },
+    {
+      "id": "set_made_choice_free",
+      "speaker": "Companion",
+      "text": "We'll face it together. We're stronger than they think.",
+      "choices": null,
+      "next": null
+    }
+  ]
+}

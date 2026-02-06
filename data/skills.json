@@ -1,0 +1,31 @@
+{
+  "skills": [
+    {
+      "id": "fire_bolt",
+      "name": "Fire Bolt",
+      "mp_cost": 8,
+      "power": 25,
+      "target_type": "single_enemy",
+      "description": "A bolt of flame strikes the enemy",
+      "icon_path": "res://sprites/ui/skill_fire.png"
+    },
+    {
+      "id": "heal",
+      "name": "Heal",
+      "mp_cost": 10,
+      "power": 35,
+      "target_type": "self",
+      "description": "Restore HP with healing magic",
+      "icon_path": "res://sprites/ui/skill_heal.png"
+    },
+    {
+      "id": "memory_drain",
+      "name": "Memory Drain",
+      "mp_cost": 0,
+      "power": 20,
+      "target_type": "single_enemy",
+      "description": "The Shade drains your memories, dealing damage",
+      "icon_path": "res://sprites/ui/skill_dark.png"
+    }
+  ]
+}

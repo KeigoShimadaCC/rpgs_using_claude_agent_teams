@@ -1,0 +1,56 @@
+{
+  "enemies": [
+    {
+      "id": "slime",
+      "name": "Slime",
+      "hp": 30,
+      "atk": 5,
+      "def": 2,
+      "agi": 3,
+      "exp_reward": 10,
+      "gold_reward": 5,
+      "sprite_path": "res://sprites/enemies/slime.png",
+      "skills": [],
+      "description": "A weak gelatinous creature"
+    },
+    {
+      "id": "goblin",
+      "name": "Goblin",
+      "hp": 45,
+      "atk": 8,
+      "def": 3,
+      "agi": 5,
+      "exp_reward": 18,
+      "gold_reward": 10,
+      "sprite_path": "res://sprites/enemies/goblin.png",
+      "skills": [],
+      "description": "A mischievous raider"
+    },
+    {
+      "id": "shadow_wolf",
+      "name": "Shadow Wolf",
+      "hp": 60,
+      "atk": 12,
+      "def": 4,
+      "agi": 8,
+      "exp_reward": 30,
+      "gold_reward": 15,
+      "sprite_path": "res://sprites/enemies/shadow_wolf.png",
+      "skills": [],
+      "description": "A swift predator of the ruins"
+    },
+    {
+      "id": "archivist_shade",
+      "name": "The Archivist Shade",
+      "hp": 150,
+      "atk": 18,
+      "def": 8,
+      "agi": 6,
+      "exp_reward": 100,
+      "gold_reward": 50,
+      "sprite_path": "res://sprites/enemies/archivist_shade.png",
+      "skills": ["memory_drain"],
+      "description": "Guardian of the sealed memory, keeper of forgotten truths"
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "dialogue_id": "companion_intro",
+  "nodes": [
+    {
+      "id": "start",
+      "speaker": "Companion",
+      "text": "Hey! Have you talked to the Elder yet?",
+      "choices": [
+        {
+          "text": "Not yet",
+          "next": "not_yet"
+        },
+        {
+          "text": "Yes, I have a quest",
+          "next": "has_quest",
+          "check_flag": "accepted_quest"
+        }
+      ],
+      "next": null
+    },
+    {
+      "id": "not_yet",
+      "speaker": "Companion",
+      "text": "You should. The Elder seems really worried about something.",
+      "choices": null,
+      "next": "bell_comment"
+    },
+    {
+      "id": "bell_comment",
+      "speaker": "Companion",
+      "text": "The bell hasn't rung in days. It's... unsettling, you know?",
+      "choices": null,
+      "next": null
+    },
+    {
+      "id": "has_quest",
+      "speaker": "Companion",
+      "text": "The ruins, huh? I've always wanted to explore them.",
+      "choices": null,
+      "next": "hint"
+    },
+    {
+      "id": "hint",
+      "speaker": "Companion",
+      "text": "Be careful out there. Strange symbols are carved on the walls.",
+      "choices": null,
+      "next": "curiosity"
+    },
+    {
+      "id": "curiosity",
+      "speaker": "Companion",
+      "text": "If you find anything interesting, let me know. I love old history.",
+      "choices": null,
+      "next": null
+    },
+    {
+      "id": "knows_truth",
+      "speaker": "Companion",
+      "text": "You're back! Did you find the clapper?",
+      "choices": [
+        {
+          "text": "Yes",
+          "next": "reveal_start",
+          "check_flag": "has_clapper"
+        },
+        {
+          "text": "Still looking",
+          "next": "encouragement"
+        }
+      ],
+      "next": null
+    },
+    {
+      "id": "encouragement",
+      "speaker": "Companion",
+      "text": "Don't give up. The village is counting on you.",
+      "choices": null,
+      "next": null
+    },
+    {
+      "id": "reveal_start",
+      "speaker": "Companion",
+      "text": "Wait. Before you give it to the Elder... there's something you should know.",
+      "choices": null,
+      "next": "reveal_memory"
+    },
+    {
+      "id": "reveal_memory",
+      "speaker": "Companion",
+      "text": "I've been reading old texts. The clapper doesn't just keep time.",
+      "choices": null,
+      "next": "reveal_truth"
+    },
+    {
+      "id": "reveal_truth",
+      "speaker": "Companion",
+      "text": "It seals a memory of our village's founding. Something the founders wanted forgotten.",
+      "choices": null,
+      "next": "reveal_question"
+    },
+    {
+      "id": "reveal_question",
+      "speaker": "Companion",
+      "text": "Don't we deserve to know our own history? Even if it's painful?",
+      "choices": null,
+      "next": "reveal_support"
+    },
+    {
+      "id": "reveal_support",
+      "speaker": "Companion",
+      "text": "Whatever you decide to do with the clapper, I'm with you.",
+      "choices": null,
+      "next": null
+    }
+  ]
+}

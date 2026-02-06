@@ -1,0 +1,182 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7xm3k8p4vh2j"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene_controller.gd" id="1_controller"]
+[ext_resource type="Script" path="res://scripts/battle/battle_system.gd" id="2_battle_system"]
+[ext_resource type="Script" path="res://scripts/battle/battle_ui.gd" id="3_battle_ui"]
+
+[node name="BattleScene" type="Node2D"]
+script = ExtResource("1_controller")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.15, 0.15, 0.2, 1)
+
+[node name="BattleSystem" type="Node" parent="."]
+script = ExtResource("2_battle_system")
+
+[node name="HeroPosition" type="Node2D" parent="."]
+position = Vector2(300, 360)
+
+[node name="HeroSprite" type="ColorRect" parent="HeroPosition"]
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.3, 0.6, 0.9, 1)
+
+[node name="HeroLabel" type="Label" parent="HeroPosition"]
+offset_left = -50.0
+offset_top = -70.0
+offset_right = 50.0
+offset_bottom = -50.0
+text = "Hero"
+horizontal_alignment = 1
+
+[node name="EnemyContainer" type="Node2D" parent="."]
+position = Vector2(880, 360)
+
+[node name="EnemyPosition1" type="Marker2D" parent="EnemyContainer"]
+position = Vector2(0, -100)
+
+[node name="EnemyPosition2" type="Marker2D" parent="EnemyContainer"]
+
+[node name="EnemyPosition3" type="Marker2D" parent="EnemyContainer"]
+position = Vector2(0, 100)
+
+[node name="BattleUI" type="CanvasLayer" parent="."]
+script = ExtResource("3_battle_ui")
+
+[node name="UI" type="Control" parent="BattleUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerStats" type="PanelContainer" parent="BattleUI/UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -150.0
+offset_right = 250.0
+offset_bottom = -20.0
+grow_vertical = 0
+
+[node name="VBox" type="VBoxContainer" parent="BattleUI/UI/PlayerStats"]
+layout_mode = 2
+
+[node name="LevelLabel" type="Label" parent="BattleUI/UI/PlayerStats/VBox"]
+layout_mode = 2
+text = "Lv 1"
+
+[node name="HPLabel" type="Label" parent="BattleUI/UI/PlayerStats/VBox"]
+layout_mode = 2
+text = "HP: 100/100"
+
+[node name="HPBar" type="ProgressBar" parent="BattleUI/UI/PlayerStats/VBox"]
+layout_mode = 2
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="MPLabel" type="Label" parent="BattleUI/UI/PlayerStats/VBox"]
+layout_mode = 2
+text = "MP: 30/30"
+
+[node name="MPBar" type="ProgressBar" parent="BattleUI/UI/PlayerStats/VBox"]
+layout_mode = 2
+max_value = 30.0
+value = 30.0
+show_percentage = false
+
+[node name="ActionMenu" type="VBoxContainer" parent="BattleUI/UI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -250.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="SkillMenu" type="VBoxContainer" parent="BattleUI/UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -250.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="ItemMenu" type="VBoxContainer" parent="BattleUI/UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -250.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TargetSelect" type="VBoxContainer" parent="BattleUI/UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BattleLog" type="RichTextLabel" parent="BattleUI/UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -120.0
+offset_right = 300.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+scroll_following = true
+
+[node name="TurnIndicator" type="Label" parent="BattleUI/UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 20.0
+offset_right = 100.0
+offset_bottom = 60.0
+grow_horizontal = 2
+text = "YOUR TURN"
+horizontal_alignment = 1
+vertical_alignment = 1

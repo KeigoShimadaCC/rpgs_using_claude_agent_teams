@@ -1,0 +1,37 @@
+{
+  "items": [
+    {
+      "id": "healing_potion",
+      "name": "Healing Potion",
+      "type": "consumable",
+      "effect": "heal",
+      "power": 40,
+      "description": "A warm red liquid that mends wounds. It tastes faintly of berries.",
+      "usable_in_battle": true,
+      "usable_in_field": true,
+      "icon_path": "res://sprites/ui/potion_icon.png"
+    },
+    {
+      "id": "bell_clapper",
+      "name": "Bell Clapper",
+      "type": "key_item",
+      "effect": "none",
+      "power": 0,
+      "description": "The missing piece of the time bell. Cold to the touch. You can feel something sealed within it.",
+      "usable_in_battle": false,
+      "usable_in_field": false,
+      "icon_path": "res://sprites/ui/clapper_icon.png"
+    },
+    {
+      "id": "ether",
+      "name": "Ether",
+      "type": "consumable",
+      "effect": "restore_mp",
+      "power": 20,
+      "description": "A shimmering blue liquid that restores magical energy. It hums softly.",
+      "usable_in_battle": true,
+      "usable_in_field": true,
+      "icon_path": "res://sprites/ui/ether_icon.png"
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "dialogue_id": "elder_intro",
+  "nodes": [
+    {
+      "id": "start",
+      "speaker": "Elder",
+      "text": "Ah, you've come. I was hoping you would.",
+      "choices": null,
+      "next": "problem"
+    },
+    {
+      "id": "problem",
+      "speaker": "Elder",
+      "text": "The time bell has fallen silent. Day and night no longer keep their rhythm.",
+      "choices": null,
+      "next": "consequence"
+    },
+    {
+      "id": "consequence",
+      "speaker": "Elder",
+      "text": "The crops wither. Shadows grow too long. Our world is losing its balance.",
+      "choices": null,
+      "next": "explain"
+    },
+    {
+      "id": "explain",
+      "speaker": "Elder",
+      "text": "The bell's clapper was removed long ago. It lies hidden in the ruins beyond the fields.",
+      "choices": null,
+      "next": "quest_offer"
+    },
+    {
+      "id": "quest_offer",
+      "speaker": "Elder",
+      "text": "Will you venture into the ruins and retrieve it?",
+      "choices": [
+        {
+          "text": "I'll help",
+          "next": "accept_direct",
+          "set_flag": "accepted_quest"
+        },
+        {
+          "text": "Tell me more",
+          "next": "ask_more"
+        }
+      ],
+      "next": null
+    },
+    {
+      "id": "accept_direct",
+      "speaker": "Elder",
+      "text": "You have my gratitude. Be cautious in the ruins. Time is... unstable there.",
+      "choices": null,
+      "next": "warning"
+    },
+    {
+      "id": "ask_more",
+      "speaker": "Elder",
+      "text": "The clapper guards a sealed memory from our village's founding.",
+      "choices": null,
+      "next": "warning_memory"
+    },
+    {
+      "id": "warning_memory",
+      "speaker": "Elder",
+      "text": "Do not seek to understand it. Simply return what was taken.",
+      "choices": null,
+      "next": "quest_offer_again"
+    },
+    {
+      "id": "quest_offer_again",
+      "speaker": "Elder",
+      "text": "Now, will you help us?",
+      "choices": [
+        {
+          "text": "Yes, I will",
+          "next": "accept_delayed",
+          "set_flag": "accepted_quest"
+        }
+      ],
+      "next": null
+    },
+    {
+      "id": "accept_delayed",
+      "speaker": "Elder",
+      "text": "Thank you. The village depends on you.",
+      "choices": null,
+      "next": "warning"
+    },
+    {
+      "id": "warning",
+      "speaker": "Elder",
+      "text": "Return the clapper to me when you find it. I will restore the bell's song.",
+      "choices": null,
+      "next": null
+    },
+    {
+      "id": "quest_active",
+      "speaker": "Elder",
+      "text": "Have you retrieved the clapper from the ruins?",
+      "choices": [
+        {
+          "text": "Not yet",
+          "next": "not_yet"
+        },
+        {
+          "text": "I have it",
+          "next": "has_clapper",
+          "check_flag": "has_clapper"
+        }
+      ],
+      "next": null
+    },
+    {
+      "id": "not_yet",
+      "speaker": "Elder",
+      "text": "Be careful. The ruins hold more than just the clapper.",
+      "choices": null,
+      "next": null
+    },
+    {
+      "id": "has_clapper",
+      "speaker": "Elder",
+      "text": "You have done well. Give it to me.",
+      "choices": null,
+      "next": "ending_transition"
+    },
+    {
+      "id": "ending_transition",
+      "speaker": "",
+      "text": "(This leads to the ending choice scene)",
+      "choices": null,
+      "next": null
+    }
+  ]
+}

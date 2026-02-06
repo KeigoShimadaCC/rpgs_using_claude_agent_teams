@@ -1,0 +1,215 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7p2m4n8k5r6s"]
+
+[ext_resource type="Script" path="res://scripts/overworld/map_controller.gd" id="1_map_controller"]
+[ext_resource type="PackedScene" uid="uid://c4p3xqh8yw5j8" path="res://scenes/overworld/player.tscn" id="2_player"]
+[ext_resource type="Script" path="res://scripts/overworld/map_trigger.gd" id="3_trigger"]
+[ext_resource type="Script" path="res://scripts/overworld/boss_trigger.gd" id="4_boss"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trigger"]
+size = Vector2(32, 16)
+
+[node name="MapBField" type="Node2D"]
+script = ExtResource("1_map_controller")
+
+[node name="GroundDecoration" type="Node2D" parent="."]
+
+[node name="FieldGround" type="Polygon2D" parent="GroundDecoration"]
+color = Color(0.35, 0.5, 0.25, 1)
+polygon = PackedVector2Array(0, 0, 400, 0, 400, 320, 0, 320)
+
+[node name="Path" type="Polygon2D" parent="GroundDecoration"]
+position = Vector2(0, 140)
+color = Color(0.5, 0.45, 0.35, 1)
+polygon = PackedVector2Array(0, 0, 400, 0, 400, 40, 0, 40)
+
+[node name="RuinsArea" type="Polygon2D" parent="GroundDecoration"]
+position = Vector2(280, 200)
+color = Color(0.4, 0.4, 0.45, 1)
+polygon = PackedVector2Array(0, 0, 120, 0, 120, 120, 0, 120)
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="NorthWall" type="StaticBody2D" parent="Walls"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="WallVisual" type="Polygon2D" parent="Walls/NorthWall"]
+color = Color(0.3, 0.3, 0.3, 1)
+polygon = PackedVector2Array(0, -16, 400, -16, 400, 0, 0, 0)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Walls/NorthWall"]
+polygon = PackedVector2Array(0, -16, 400, -16, 400, 0, 0, 0)
+
+[node name="SouthWall" type="StaticBody2D" parent="Walls"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="WallVisual" type="Polygon2D" parent="Walls/SouthWall"]
+color = Color(0.3, 0.3, 0.3, 1)
+polygon = PackedVector2Array(0, 320, 400, 320, 400, 336, 0, 336)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Walls/SouthWall"]
+polygon = PackedVector2Array(0, 320, 400, 320, 400, 336, 0, 336)
+
+[node name="WestWall" type="StaticBody2D" parent="Walls"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="WallVisual" type="Polygon2D" parent="Walls/WestWall"]
+color = Color(0.3, 0.3, 0.3, 1)
+polygon = PackedVector2Array(-16, 0, 0, 0, 0, 320, -16, 320)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Walls/WestWall"]
+polygon = PackedVector2Array(-16, 0, 0, 0, 0, 320, -16, 320)
+
+[node name="EastWall" type="StaticBody2D" parent="Walls"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="WallVisual" type="Polygon2D" parent="Walls/EastWall"]
+color = Color(0.3, 0.3, 0.3, 1)
+polygon = PackedVector2Array(400, 0, 416, 0, 416, 320, 400, 320)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Walls/EastWall"]
+polygon = PackedVector2Array(400, 0, 416, 0, 416, 320, 400, 320)
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="Rock1" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(80, 60)
+collision_layer = 1
+collision_mask = 0
+
+[node name="RockVisual" type="Polygon2D" parent="Obstacles/Rock1"]
+color = Color(0.5, 0.5, 0.5, 1)
+polygon = PackedVector2Array(-12, -10, 0, -14, 12, -10, 14, 0, 10, 12, -10, 12, -14, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacles/Rock1"]
+polygon = PackedVector2Array(-12, -10, 0, -14, 12, -10, 14, 0, 10, 12, -10, 12, -14, 0)
+
+[node name="Rock2" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(320, 60)
+collision_layer = 1
+collision_mask = 0
+
+[node name="RockVisual" type="Polygon2D" parent="Obstacles/Rock2"]
+color = Color(0.5, 0.5, 0.5, 1)
+polygon = PackedVector2Array(-12, -10, 0, -14, 12, -10, 14, 0, 10, 12, -10, 12, -14, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacles/Rock2"]
+polygon = PackedVector2Array(-12, -10, 0, -14, 12, -10, 14, 0, 10, 12, -10, 12, -14, 0)
+
+[node name="RuinPillar1" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(300, 230)
+collision_layer = 1
+collision_mask = 0
+
+[node name="PillarVisual" type="Polygon2D" parent="Obstacles/RuinPillar1"]
+color = Color(0.6, 0.6, 0.65, 1)
+polygon = PackedVector2Array(-8, -16, 8, -16, 8, 16, -8, 16)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacles/RuinPillar1"]
+polygon = PackedVector2Array(-8, -16, 8, -16, 8, 16, -8, 16)
+
+[node name="RuinPillar2" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(380, 230)
+collision_layer = 1
+collision_mask = 0
+
+[node name="PillarVisual" type="Polygon2D" parent="Obstacles/RuinPillar2"]
+color = Color(0.6, 0.6, 0.65, 1)
+polygon = PackedVector2Array(-8, -16, 8, -16, 8, 16, -8, 16)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacles/RuinPillar2"]
+polygon = PackedVector2Array(-8, -16, 8, -16, 8, 16, -8, 16)
+
+[node name="EncounterZones" type="Node2D" parent="."]
+
+[node name="EncounterZone1" type="Area2D" parent="EncounterZones"]
+position = Vector2(100, 80)
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("3_trigger")
+trigger_type = 1
+enemy_ids = Array[String](["slime", "slime"])
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EncounterZones/EncounterZone1"]
+polygon = PackedVector2Array(-40, -30, 40, -30, 40, 30, -40, 30)
+
+[node name="ZoneVisual" type="Polygon2D" parent="EncounterZones/EncounterZone1"]
+color = Color(1, 0.3, 0.3, 0.15)
+polygon = PackedVector2Array(-40, -30, 40, -30, 40, 30, -40, 30)
+
+[node name="EncounterZone2" type="Area2D" parent="EncounterZones"]
+position = Vector2(200, 160)
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("3_trigger")
+trigger_type = 1
+enemy_ids = Array[String](["goblin", "slime"])
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EncounterZones/EncounterZone2"]
+polygon = PackedVector2Array(-50, -40, 50, -40, 50, 40, -50, 40)
+
+[node name="ZoneVisual" type="Polygon2D" parent="EncounterZones/EncounterZone2"]
+color = Color(1, 0.3, 0.3, 0.15)
+polygon = PackedVector2Array(-50, -40, 50, -40, 50, 40, -50, 40)
+
+[node name="EncounterZone3" type="Area2D" parent="EncounterZones"]
+position = Vector2(180, 260)
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("3_trigger")
+trigger_type = 1
+enemy_ids = Array[String](["shadow_wolf"])
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EncounterZones/EncounterZone3"]
+polygon = PackedVector2Array(-60, -35, 60, -35, 60, 35, -60, 35)
+
+[node name="ZoneVisual" type="Polygon2D" parent="EncounterZones/EncounterZone3"]
+color = Color(1, 0.3, 0.3, 0.15)
+polygon = PackedVector2Array(-60, -35, 60, -35, 60, 35, -60, 35)
+
+[node name="Triggers" type="Node2D" parent="."]
+
+[node name="ToMapA" type="Area2D" parent="Triggers"]
+position = Vector2(20, 160)
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("3_trigger")
+trigger_type = 0
+target_scene = "res://scenes/overworld/map_a_village.tscn"
+spawn_marker_name = "FromMapB"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/ToMapA"]
+shape = SubResource("RectangleShape2D_trigger")
+
+[node name="TriggerVisual" type="Polygon2D" parent="Triggers/ToMapA"]
+color = Color(1, 1, 0, 0.3)
+polygon = PackedVector2Array(-16, -8, 16, -8, 16, 8, -16, 8)
+
+[node name="BossTrigger" type="Area2D" parent="Triggers"]
+position = Vector2(340, 270)
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("4_boss")
+boss_intro_dialogue_id = "boss_intro"
+boss_enemy_id = "archivist_shade"
+required_flag = "accepted_quest"
+blocked_message = "The path to the ruins is blocked by an invisible force. Perhaps the Elder knows more..."
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Triggers/BossTrigger"]
+polygon = PackedVector2Array(-30, -25, 30, -25, 30, 25, -30, 25)
+
+[node name="BossVisual" type="Polygon2D" parent="Triggers/BossTrigger"]
+color = Color(0.8, 0.2, 0.2, 0.25)
+polygon = PackedVector2Array(-30, -25, 30, -25, 30, 25, -30, 25)
+
+[node name="FromMapA" type="Marker2D" parent="."]
+position = Vector2(40, 160)
+
+[node name="PlayerSpawn" type="Marker2D" parent="."]
+position = Vector2(40, 160)
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(40, 160)

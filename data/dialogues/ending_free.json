@@ -1,0 +1,103 @@
+{
+  "dialogue_id": "ending_free",
+  "nodes": [
+    {
+      "id": "start",
+      "speaker": "",
+      "text": "The seal breaks. Light pours from the clapper like water from a broken dam.",
+      "choices": null,
+      "next": "memory_release"
+    },
+    {
+      "id": "memory_release",
+      "speaker": "",
+      "text": "The memory floods outward, carried on the wind back to the village.",
+      "choices": null,
+      "next": "return_to_village"
+    },
+    {
+      "id": "return_to_village",
+      "speaker": "",
+      "text": "When you return, the village is changed.",
+      "choices": null,
+      "next": "villagers_know"
+    },
+    {
+      "id": "villagers_know",
+      "speaker": "",
+      "text": "Every villager remembers now. Their founders' crime. The betrayal. The cost.",
+      "choices": null,
+      "next": "elder_confrontation"
+    },
+    {
+      "id": "elder_confrontation",
+      "speaker": "Elder",
+      "text": "You've doomed us to division and doubt.",
+      "choices": null,
+      "next": "elder_anger"
+    },
+    {
+      "id": "elder_anger",
+      "speaker": "Elder",
+      "text": "We were at peace. Now we are burdened.",
+      "choices": null,
+      "next": "companion_steps_forward"
+    },
+    {
+      "id": "companion_steps_forward",
+      "speaker": "Companion",
+      "text": "No. They've given us the chance to be better than our founders.",
+      "choices": null,
+      "next": "companion_defense"
+    },
+    {
+      "id": "companion_defense",
+      "speaker": "Companion",
+      "text": "We can choose truth. We can choose to grow.",
+      "choices": null,
+      "next": "bell_rings"
+    },
+    {
+      "id": "bell_rings",
+      "speaker": "",
+      "text": "The bell rings. But its sound is different now.",
+      "choices": null,
+      "next": "bell_sound"
+    },
+    {
+      "id": "bell_sound",
+      "speaker": "",
+      "text": "Clearer. Sharper. Honest.",
+      "choices": null,
+      "next": "village_reaction"
+    },
+    {
+      "id": "village_reaction",
+      "speaker": "",
+      "text": "Some villagers are shaken. Some are angry. But others are grateful.",
+      "choices": null,
+      "next": "time_flows"
+    },
+    {
+      "id": "time_flows",
+      "speaker": "",
+      "text": "Time flows again. The cycle is restored.",
+      "choices": null,
+      "next": "final_scene"
+    },
+    {
+      "id": "final_scene",
+      "speaker": "",
+      "text": "You walk through the village as people grapple with their history.",
+      "choices": null,
+      "next": "final_line"
+    },
+    {
+      "id": "final_line",
+      "speaker": "",
+      "text": "The truth is free. The future is uncertain. But it is yours.",
+      "choices": null,
+      "next": null
+    }
+  ]
+}
