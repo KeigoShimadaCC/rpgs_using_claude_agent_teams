@@ -162,8 +162,64 @@ func execute_player_action(action: Dictionary) -> void:
 			execute_player_item(action.item_id)
 		"run":
 			attempt_run()
+		"auto":
+			await perform_auto_action()
+	
+	# Check victory condition and continue to enemy turn
+	_check_victory_and_continue()
 
-	# Check victory condition
+## Execute auto action for player
+func perform_auto_action() -> void:
+	log_message("Auto-Battle...")
+	await get_tree().create_timer(0.5).timeout
+	
+	# Decision logic
+	var hp_percent = float(GameState.player_hp) / float(GameState.player_hp_max)
+	
+	# 1. Critical Health -> Heal
+	if hp_percent < 0.3:
+		if has_mp_for_skill("heal"):
+			await execute_player_skill("heal", 0)
+			return
+		elif GameState.has_item("potion"):
+			execute_player_item("potion")
+			return
+		else:
+			# Can't heal, defend
+			execute_player_defend()
+			return
+			
+	# 2. Attack or Skill
+	# Simple strategy: Attack most of the time, use offensive skill sometimes
+	if randf() < 0.3 and has_mp_for_skill("fire_bolt"):
+		# Use Fire Bolt on random enemy
+		var target_idx = get_random_enemy_index()
+		await execute_player_skill("fire_bolt", target_idx)
+	else:
+		# Attack random enemy
+		var target_idx = get_random_enemy_index()
+		await execute_player_attack(target_idx)
+
+## Helper to check if player has skill and enough MP
+func has_mp_for_skill(skill_id: String) -> bool:
+	var skill = skills_data.get(skill_id)
+	if skill and GameState.player_mp >= skill.mp_cost:
+		return true
+	return false
+	
+## Helper to get random alive enemy index
+func get_random_enemy_index() -> int:
+	var alive_indices = []
+	for i in range(enemies.size()):
+		if enemies[i] and enemies[i].is_alive():
+			alive_indices.append(i)
+	
+	if alive_indices.is_empty():
+		return 0
+	return alive_indices.pick_random()
+
+# Check victory condition
+func _check_victory_and_continue() -> void:
 	if all_enemies_defeated():
 		trigger_victory()
 		return

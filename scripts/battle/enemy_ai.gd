@@ -81,7 +81,9 @@ func die() -> void:
 	var tween = create_tween()
 	tween.tween_property(self, "modulate:a", 0.0, 0.5)
 	await tween.finished
-	queue_free()
+	# Do not queue_free here, so we can access rewards at end of battle
+	# The BattleScene will cleanup everything when we leave
+	visible = false
 
 ## AI Decision Making
 ## Returns action dictionary: { "type": "attack"|"defend"|"skill", "skill_id": String }

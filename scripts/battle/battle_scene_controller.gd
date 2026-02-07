@@ -31,12 +31,14 @@ func _ready() -> void:
 		initialize_battle(config.enemy_ids)
 
 func initialize_battle(enemy_ids: Array) -> void:
+	print("Initializing battle with enemy IDs: ", enemy_ids)
 	# Load and spawn enemies
 	for i in range(min(enemy_ids.size(), 3)):
 		var enemy_id = enemy_ids[i]
 		var enemy_data = battle_system.get_enemy_data(enemy_id)
 
 		if not enemy_data.is_empty():
+			print("Spawning enemy: ", enemy_data.get("name", "Unknown"))
 			# Create enemy instance
 			var enemy_instance = battle_system.enemy_scene.instantiate()
 			enemy_instance.setup(enemy_data)
@@ -50,6 +52,9 @@ func initialize_battle(enemy_ids: Array) -> void:
 
 			# Add to battle system enemies array
 			battle_system.enemies.append(enemy_instance)
-
+		else:
+			print("ERROR: Could not find enemy data for: ", enemy_id)
+	
+	print("Total enemies spawned: ", battle_system.enemies.size())
 	# Initialize battle system
 	battle_system.start_battle()

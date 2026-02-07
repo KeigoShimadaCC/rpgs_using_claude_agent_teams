@@ -12,18 +12,17 @@ var on_victory_callback: Callable
 var on_defeat_callback: Callable
 var is_boss_battle: bool = false
 var previous_scene_path: String = ""
+var return_spawn_position: Vector2 = Vector2.ZERO
 
 const BATTLE_SCENE_PATH: String = "res://scenes/battle/battle_scene.tscn"
-
-func _ready() -> void:
-	pass
 
 ## Start a battle with the given enemy IDs
 ## @param enemy_ids: Array of enemy ID strings (e.g., ["slime", "goblin"])
 ## @param on_victory: Callable to execute on battle victory (receives exp: int, gold: int)
 ## @param on_defeat: Callable to execute on battle defeat (no params)
 ## @param boss_battle: Set to true to prevent running from battle
-func start_battle(enemy_ids: Array, on_victory: Callable, on_defeat: Callable, boss_battle: bool = false) -> void:
+## @param player_position: Optional Vector2 for where to return the player after battle
+func start_battle(enemy_ids: Array, on_victory: Callable, on_defeat: Callable, boss_battle: bool = false, player_position: Vector2 = Vector2.ZERO) -> void:
 	if enemy_ids.is_empty():
 		push_error("BattleManager: Cannot start battle with empty enemy list")
 		return
@@ -33,11 +32,18 @@ func start_battle(enemy_ids: Array, on_victory: Callable, on_defeat: Callable, b
 	on_victory_callback = on_victory
 	on_defeat_callback = on_defeat
 	is_boss_battle = boss_battle
+	return_spawn_position = player_position
 
 	# Store current scene path for returning later
 	var current_scene = get_tree().current_scene
 	if current_scene:
 		previous_scene_path = current_scene.scene_file_path
+		
+		# If player position wasn't explicitly provided, try to find player node
+		if return_spawn_position == Vector2.ZERO:
+			var player = current_scene.find_child("Player", true, false)
+			if player:
+				return_spawn_position = player.global_position
 
 	battle_started.emit(enemy_ids)
 
@@ -70,8 +76,11 @@ func _on_battle_defeat() -> void:
 
 ## Return to the overworld scene
 func _return_to_overworld() -> void:
+	if return_spawn_position != Vector2.ZERO:
+		get_tree().root.set_meta("spawn_position", return_spawn_position)
+		
 	if previous_scene_path != "":
-		get_tree().change_scene_to_file(previous_scene_path)
+		get_tree().call_deferred("change_scene_to_file", previous_scene_path)
 	else:
 		# Fallback to village map
 		get_tree().change_scene_to_file("res://scenes/overworld/map_a_village.tscn")

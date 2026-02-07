@@ -7,12 +7,18 @@ extends Node2D
 
 func _ready() -> void:
 	# Check for spawn metadata set by transition trigger
-	var spawn_marker_name = get_tree().root.get_meta("spawn_marker", "")
-	var spawn_position = get_tree().root.get_meta("spawn_position", Vector2.ZERO)
-
-	# Clear metadata
-	get_tree().root.remove_meta("spawn_marker")
-	get_tree().root.remove_meta("spawn_position")
+	# Check for spawn metadata set by transition trigger or battle manager
+	var spawn_marker_name = ""
+	if get_tree().root.has_meta("spawn_marker"):
+		spawn_marker_name = get_tree().root.get_meta("spawn_marker")
+		get_tree().root.remove_meta("spawn_marker")
+		
+	var spawn_position = Vector2.ZERO
+	var has_spawn_pos = false
+	if get_tree().root.has_meta("spawn_position"):
+		spawn_position = get_tree().root.get_meta("spawn_position")
+		has_spawn_pos = true
+		get_tree().root.remove_meta("spawn_position")
 
 	# Find player
 	var player = get_tree().get_first_node_in_group("player")
@@ -29,7 +35,7 @@ func _ready() -> void:
 		else:
 			print("MapController: Spawn marker not found: ", spawn_marker_name)
 			_use_default_spawn(player)
-	elif spawn_position != Vector2.ZERO:
+	elif has_spawn_pos:
 		player.global_position = spawn_position
 		print("MapController: Spawned player at position: ", spawn_position)
 	else:

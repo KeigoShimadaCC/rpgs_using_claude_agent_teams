@@ -62,13 +62,30 @@ func create_action_menu() -> void:
 		child.queue_free()
 	action_buttons.clear()
 
-	var actions = ["Attack", "Defend", "Skill", "Item", "Run"]
+	var actions = ["Attack", "Defend", "Skill", "Item", "Auto", "Run"]
 	for action_name in actions:
 		var button = Button.new()
 		button.text = action_name
 		button.pressed.connect(_on_action_button_pressed.bind(action_name))
 		action_menu.add_child(button)
 		action_buttons.append(button)
+		
+	# Setup neighbors for keyboard navigation
+	_setup_button_neighbors(action_buttons)
+
+## Helper to setup button focus neighbors
+func _setup_button_neighbors(buttons: Array) -> void:
+	if buttons.is_empty():
+		return
+		
+	for i in range(buttons.size()):
+		var btn = buttons[i]
+		var prev = buttons[i-1] if i > 0 else buttons[buttons.size()-1]
+		var next = buttons[i+1] if i < buttons.size()-1 else buttons[0]
+		
+		btn.focus_neighbor_top = prev.get_path()
+		btn.focus_neighbor_bottom = next.get_path()
+		# Also set left/right to loop or do nothing
 
 ## Handle action button press
 func _on_action_button_pressed(action_name: String) -> void:
@@ -82,6 +99,8 @@ func _on_action_button_pressed(action_name: String) -> void:
 			show_skill_menu()
 		"Item":
 			show_item_menu()
+		"Auto":
+			send_action({"type": "auto"})
 		"Run":
 			send_action({"type": "run"})
 
@@ -121,6 +140,13 @@ func show_skill_menu() -> void:
 	back_btn.text = "Back"
 	back_btn.pressed.connect(_on_back_to_action_menu)
 	skill_menu.add_child(back_btn)
+	skill_buttons.append(back_btn)
+	
+	_setup_button_neighbors(skill_buttons)
+	
+	# Focus first button
+	if not skill_buttons.is_empty():
+		skill_buttons[0].grab_focus()
 
 ## Handle skill button press
 func _on_skill_button_pressed(skill_id: String) -> void:
@@ -169,6 +195,13 @@ func show_item_menu() -> void:
 	back_btn.text = "Back"
 	back_btn.pressed.connect(_on_back_to_action_menu)
 	item_menu.add_child(back_btn)
+	item_buttons.append(back_btn)
+	
+	_setup_button_neighbors(item_buttons)
+	
+	# Focus first button
+	if not item_buttons.is_empty():
+		item_buttons[0].grab_focus()
 
 ## Handle item button press
 func _on_item_button_pressed(item_id: String) -> void:
@@ -208,6 +241,13 @@ func show_target_select(action_type: String) -> void:
 	back_btn.text = "Back"
 	back_btn.pressed.connect(_on_back_to_action_menu)
 	target_select.add_child(back_btn)
+	target_buttons.append(back_btn)
+	
+	_setup_button_neighbors(target_buttons)
+	
+	# Focus first button
+	if not target_buttons.is_empty():
+		target_buttons[0].grab_focus()
 
 ## Handle target button press
 func _on_target_button_pressed(target_index: int, action_type: String) -> void:
@@ -223,6 +263,10 @@ func _on_back_to_action_menu() -> void:
 	skill_menu.visible = false
 	item_menu.visible = false
 	target_select.visible = false
+	
+	# Focus first action button
+	if not action_buttons.is_empty():
+		action_buttons[0].grab_focus()
 
 ## Send action to battle system
 func send_action(action: Dictionary) -> void:
@@ -237,11 +281,10 @@ func enable_action_menu(enabled: bool) -> void:
 	if enabled:
 		_on_back_to_action_menu()
 		action_menu.visible = true
-	else:
-		action_menu.visible = false
-		skill_menu.visible = false
-		item_menu.visible = false
-		target_select.visible = false
+		
+		# Focus first button
+		if not action_buttons.is_empty():
+			action_buttons[0].grab_focus()
 
 ## Update player stat displays
 func update_player_stats() -> void:
