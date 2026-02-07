@@ -136,7 +136,9 @@ func _handle_battle_trigger() -> void:
 		var battle_manager = get_node("/root/BattleManager")
 		if battle_manager.has_method("start_battle"):
 			can_trigger = false  # Prevent retriggering
-			battle_manager.start_battle(enemy_ids, _on_battle_victory, _on_battle_defeat)
+			battle_manager.call_deferred("start_battle", enemy_ids, _on_battle_victory, _on_battle_defeat, false)
+		else:
+			print("BattleManager does not have start_battle method!")
 	else:
 		print("BattleManager not found! Cannot start battle.")
 

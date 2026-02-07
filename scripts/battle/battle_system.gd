@@ -39,19 +39,11 @@ var ui_controller = null
 func _ready() -> void:
 	load_data()
 
-## Initialize battle with enemy IDs from BattleManager
-func initialize_battle(enemy_ids: Array) -> void:
+## Start battle (assumes enemies are already populated)
+func start_battle() -> void:
 	current_state = BattleState.INITIALIZING
-	enemies.clear()
 	current_enemy_index = 0
-
-	# Load enemies
-	for enemy_id in enemy_ids:
-		var enemy_data = get_enemy_data(enemy_id)
-		if not enemy_data.is_empty():
-			var enemy_instance = enemy_scene.instantiate()
-			enemies.append(enemy_instance)
-
+	
 	log_message("Battle started!")
 	start_player_turn()
 
@@ -139,7 +131,7 @@ func process_all_enemy_turns() -> void:
 			await get_tree().create_timer(0.3).timeout
 
 ## Process single enemy turn
-func process_enemy_turn(enemy: EnemyBattler) -> void:
+func process_enemy_turn(enemy) -> void:
 	var action = enemy.decide_action()
 	log_message(enemy.enemy_name + " is acting...")
 
@@ -268,7 +260,7 @@ func attempt_run() -> void:
 		await get_tree().create_timer(0.5).timeout
 
 ## Enemy attacks player
-func execute_enemy_attack(enemy: EnemyBattler) -> void:
+func execute_enemy_attack(enemy) -> void:
 	log_message(enemy.enemy_name + " attacks!")
 
 	var damage = calculate_damage(enemy.atk, GameState.get_total_def())
@@ -288,7 +280,7 @@ func execute_enemy_attack(enemy: EnemyBattler) -> void:
 	await get_tree().create_timer(0.5).timeout
 
 ## Enemy uses skill
-func execute_enemy_skill(enemy: EnemyBattler, skill_id: String) -> void:
+func execute_enemy_skill(enemy, skill_id: String) -> void:
 	var skill = skills_data.get(skill_id)
 	if not skill:
 		# Fallback to attack
@@ -331,7 +323,7 @@ func all_enemies_defeated() -> bool:
 	return true
 
 ## Get first alive enemy
-func get_first_alive_enemy() -> EnemyBattler:
+func get_first_alive_enemy():
 	for enemy in enemies:
 		if enemy and enemy.is_alive():
 			return enemy

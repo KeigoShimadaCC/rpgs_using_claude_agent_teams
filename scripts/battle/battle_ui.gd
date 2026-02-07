@@ -4,11 +4,11 @@ extends CanvasLayer
 ## Handles battle user interface (HP/MP bars, action menus, battle log)
 
 # UI Node references
-@onready var player_hp_bar: ProgressBar = $UI/PlayerStats/HPBar
-@onready var player_mp_bar: ProgressBar = $UI/PlayerStats/MPBar
-@onready var player_hp_label: Label = $UI/PlayerStats/HPLabel
-@onready var player_mp_label: Label = $UI/PlayerStats/MPLabel
-@onready var player_level_label: Label = $UI/PlayerStats/LevelLabel
+@onready var player_hp_bar: ProgressBar = $UI/PlayerStats/VBox/HPBar
+@onready var player_mp_bar: ProgressBar = $UI/PlayerStats/VBox/MPBar
+@onready var player_hp_label: Label = $UI/PlayerStats/VBox/HPLabel
+@onready var player_mp_label: Label = $UI/PlayerStats/VBox/MPLabel
+@onready var player_level_label: Label = $UI/PlayerStats/VBox/LevelLabel
 
 @onready var action_menu: VBoxContainer = $UI/ActionMenu
 @onready var skill_menu: VBoxContainer = $UI/SkillMenu
@@ -195,7 +195,11 @@ func show_target_select(action_type: String) -> void:
 		var enemy = enemies[i]
 		var button = Button.new()
 		button.text = enemy.enemy_name + " (" + str(enemy.current_hp) + "/" + str(enemy.max_hp) + " HP)"
-		button.pressed.connect(_on_target_button_pressed.bind(i, action_type))
+		
+		# Find the original index of this enemy in the battle_system.enemies array
+		var original_index = battle_system.enemies.find(enemy)
+		
+		button.pressed.connect(_on_target_button_pressed.bind(original_index, action_type))
 		target_select.add_child(button)
 		target_buttons.append(button)
 

@@ -52,4 +52,4 @@ func initialize_battle(enemy_ids: Array) -> void:
 			battle_system.enemies.append(enemy_instance)
 
 	# Initialize battle system
-	battle_system.initialize_battle(enemy_ids)
+	battle_system.start_battle()
