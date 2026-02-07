@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7p2m4n8k5r6s"]
+[gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_controller.gd" id="1_map_controller"]
-[ext_resource type="PackedScene" uid="uid://c4p3xqh8yw5j8" path="res://scenes/overworld/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/overworld/player.tscn" id="2_player"]
 [ext_resource type="Script" path="res://scripts/overworld/map_trigger.gd" id="3_trigger"]
 [ext_resource type="Script" path="res://scripts/overworld/boss_trigger.gd" id="4_boss"]
 
@@ -173,7 +173,7 @@ polygon = PackedVector2Array(-60, -35, 60, -35, 60, 35, -60, 35)
 [node name="Triggers" type="Node2D" parent="."]
 
 [node name="ToMapA" type="Area2D" parent="Triggers"]
-position = Vector2(20, 160)
+position = Vector2(5, 160)
 collision_layer = 16
 collision_mask = 2
 script = ExtResource("3_trigger")
@@ -206,7 +206,7 @@ color = Color(0.8, 0.2, 0.2, 0.25)
 polygon = PackedVector2Array(-30, -25, 30, -25, 30, 25, -30, 25)
 
 [node name="FromMapA" type="Marker2D" parent="."]
-position = Vector2(40, 160)
+position = Vector2(60, 160)
 
 [node name="PlayerSpawn" type="Marker2D" parent="."]
 position = Vector2(40, 160)
