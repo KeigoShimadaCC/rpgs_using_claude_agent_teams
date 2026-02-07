@@ -5,8 +5,8 @@ extends StaticBody2D
 @export var dialogue_id: String = ""
 @export var interactable: bool = true
 
-# Visual
-@onready var sprite: Sprite2D = $Sprite2D if has_node("Sprite2D") else null
+# Visual (scene uses Polygon2D placeholder named Sprite2D)
+@onready var sprite = get_node_or_null("Sprite2D")
 
 # Signals
 signal npc_interacted(npc: Node)

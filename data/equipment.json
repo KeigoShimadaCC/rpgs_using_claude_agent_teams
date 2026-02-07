@@ -1,0 +1,269 @@
+{
+  "weapons": [
+    {
+      "id": "wooden_stick",
+      "name": "Wooden Stick",
+      "atk_bonus": 2,
+      "price": 50,
+      "description": "A simple wooden staff. Better than bare hands.",
+      "icon_path": "res://sprites/ui/weapon_stick.png"
+    },
+    {
+      "id": "iron_sword",
+      "name": "Iron Sword",
+      "atk_bonus": 8,
+      "price": 200,
+      "description": "A sturdy iron blade, standard issue for warriors.",
+      "icon_path": "res://sprites/ui/weapon_iron.png"
+    },
+    {
+      "id": "steel_sword",
+      "name": "Steel Sword",
+      "atk_bonus": 15,
+      "price": 500,
+      "description": "Tempered steel, sharp and reliable.",
+      "icon_path": "res://sprites/ui/weapon_steel.png"
+    },
+    {
+      "id": "assassin_dagger",
+      "name": "Assassin's Dagger",
+      "atk_bonus": 12,
+      "agi_bonus": 3,
+      "price": 400,
+      "description": "A swift blade favored by rogues. Increases agility.",
+      "icon_path": "res://sprites/ui/weapon_dagger.png"
+    },
+    {
+      "id": "guardian_blade",
+      "name": "Guardian's Blade",
+      "atk_bonus": 30,
+      "def_bonus": 5,
+      "price": 0,
+      "description": "The blessed weapon of the Forest Guardian. Radiates protective energy.",
+      "icon_path": "res://sprites/ui/weapon_guardian.png",
+      "is_unique": true
+    },
+    {
+      "id": "titans_edge",
+      "name": "Titan's Edge",
+      "atk_bonus": 40,
+      "price": 0,
+      "description": "Forged from the Crystal Titan's core. Unmatched destructive power.",
+      "icon_path": "res://sprites/ui/weapon_titan.png",
+      "is_unique": true
+    },
+    {
+      "id": "fire_brand",
+      "name": "Fire Brand",
+      "atk_bonus": 20,
+      "price": 800,
+      "description": "A blade wreathed in eternal flame.",
+      "element": "fire",
+      "icon_path": "res://sprites/ui/weapon_fire.png"
+    },
+    {
+      "id": "ice_rapier",
+      "name": "Ice Rapier",
+      "atk_bonus": 22,
+      "price": 900,
+      "description": "A crystalline blade that chills to the bone.",
+      "element": "ice",
+      "icon_path": "res://sprites/ui/weapon_ice.png"
+    },
+    {
+      "id": "thunder_spear",
+      "name": "Thunder Spear",
+      "atk_bonus": 25,
+      "price": 1200,
+      "description": "Crackling with electrical energy, this spear strikes like lightning.",
+      "element": "lightning",
+      "icon_path": "res://sprites/ui/weapon_thunder.png"
+    },
+    {
+      "id": "chrono_blade",
+      "name": "Chrono Blade",
+      "atk_bonus": 35,
+      "agi_bonus": 5,
+      "price": 0,
+      "description": "A weapon from outside time itself. Reward for achieving the true ending.",
+      "icon_path": "res://sprites/ui/weapon_chrono.png",
+      "is_unique": true
+    }
+  ],
+  "armor": [
+    {
+      "id": "cloth_tunic",
+      "name": "Cloth Tunic",
+      "def_bonus": 2,
+      "price": 50,
+      "description": "Simple cloth protection. Better than nothing.",
+      "icon_path": "res://sprites/ui/armor_cloth.png"
+    },
+    {
+      "id": "leather_armor",
+      "name": "Leather Armor",
+      "def_bonus": 6,
+      "price": 180,
+      "description": "Tanned leather provides decent protection.",
+      "icon_path": "res://sprites/ui/armor_leather.png"
+    },
+    {
+      "id": "steel_armor",
+      "name": "Steel Armor",
+      "def_bonus": 12,
+      "price": 450,
+      "description": "Heavy steel plating, solid defense.",
+      "icon_path": "res://sprites/ui/armor_steel.png"
+    },
+    {
+      "id": "dragon_scale",
+      "name": "Dragon Scale Armor",
+      "def_bonus": 20,
+      "hp_bonus": 20,
+      "price": 0,
+      "description": "Legendary armor made from dragon scales. Extremely rare.",
+      "icon_path": "res://sprites/ui/armor_dragon.png",
+      "is_unique": true
+    },
+    {
+      "id": "crystal_mail",
+      "name": "Crystal Mail",
+      "def_bonus": 16,
+      "price": 700,
+      "description": "Armor crafted from enchanted crystal.",
+      "icon_path": "res://sprites/ui/armor_crystal.png"
+    },
+    {
+      "id": "guardian_plate",
+      "name": "Guardian Plate",
+      "def_bonus": 25,
+      "hp_bonus": 30,
+      "price": 0,
+      "description": "The ultimate defensive armor, worn by ancient guardians.",
+      "icon_path": "res://sprites/ui/armor_guardian.png",
+      "is_unique": true
+    },
+    {
+      "id": "time_weave",
+      "name": "Time Weave",
+      "def_bonus": 18,
+      "mp_bonus": 20,
+      "price": 1000,
+      "description": "Woven from temporal threads, light but incredibly durable.",
+      "icon_path": "res://sprites/ui/armor_time.png"
+    },
+    {
+      "id": "scholar_robe",
+      "name": "Scholar's Robe",
+      "def_bonus": 15,
+      "mp_bonus": 30,
+      "price": 0,
+      "description": "The robes of ancient scholars, imbued with magical essence.",
+      "icon_path": "res://sprites/ui/armor_scholar.png"
+    },
+    {
+      "id": "shadow_cloak",
+      "name": "Shadow Cloak",
+      "def_bonus": 14,
+      "agi_bonus": 5,
+      "price": 0,
+      "description": "A cloak that seems to blend with shadows. Increases evasion.",
+      "icon_path": "res://sprites/ui/armor_shadow.png"
+    },
+    {
+      "id": "mythril_armor",
+      "name": "Mythril Armor",
+      "def_bonus": 22,
+      "price": 1500,
+      "description": "The legendary metal mythril, light yet incredibly strong.",
+      "icon_path": "res://sprites/ui/armor_mythril.png"
+    }
+  ],
+  "accessories": [
+    {
+      "id": "hp_ring",
+      "name": "HP Ring",
+      "hp_bonus": 20,
+      "price": 100,
+      "description": "A ring that bolsters the wearer's vitality.",
+      "icon_path": "res://sprites/ui/acc_hp.png"
+    },
+    {
+      "id": "mp_ring",
+      "name": "MP Ring",
+      "mp_bonus": 20,
+      "price": 100,
+      "description": "A ring that enhances magical reserves.",
+      "icon_path": "res://sprites/ui/acc_mp.png"
+    },
+    {
+      "id": "power_band",
+      "name": "Power Band",
+      "atk_bonus": 5,
+      "price": 150,
+      "description": "Increases the wearer's physical strength.",
+      "icon_path": "res://sprites/ui/acc_power.png"
+    },
+    {
+      "id": "guard_ring",
+      "name": "Guard Ring",
+      "def_bonus": 5,
+      "price": 150,
+      "description": "Provides additional protection.",
+      "icon_path": "res://sprites/ui/acc_guard.png"
+    },
+    {
+      "id": "speed_boots",
+      "name": "Speed Boots",
+      "agi_bonus": 3,
+      "price": 200,
+      "description": "Enchanted boots that quicken the wearer's movements.",
+      "icon_path": "res://sprites/ui/acc_speed.png"
+    },
+    {
+      "id": "hunter_badge",
+      "name": "Hunter's Badge",
+      "atk_bonus": 5,
+      "price": 0,
+      "description": "Proof of a skilled monster hunter. Awarded for valor.",
+      "icon_path": "res://sprites/ui/acc_hunter.png"
+    },
+    {
+      "id": "clockwork_heart",
+      "name": "Clockwork Heart",
+      "special": "auto_regen",
+      "regen_amount": 5,
+      "price": 0,
+      "description": "A mechanical heart that slowly regenerates HP each turn.",
+      "icon_path": "res://sprites/ui/acc_clockwork.png"
+    },
+    {
+      "id": "time_crystal",
+      "name": "Time Crystal",
+      "mp_bonus": 20,
+      "agi_bonus": 2,
+      "price": 0,
+      "description": "A crystal fragment from the Time Bell Tower.",
+      "icon_path": "res://sprites/ui/acc_timecrystal.png"
+    },
+    {
+      "id": "mystic_amulet",
+      "name": "Mystic Amulet",
+      "hp_bonus": 10,
+      "mp_bonus": 10,
+      "special": "regen",
+      "regen_amount": 3,
+      "price": 0,
+      "description": "An ancient amulet that slowly restores HP and MP.",
+      "icon_path": "res://sprites/ui/acc_mystic.png"
+    },
+    {
+      "id": "phoenix_feather",
+      "name": "Phoenix Feather",
+      "special": "auto_revive",
+      "price": 3000,
+      "description": "A legendary feather. Automatically revives the wearer once per battle.",
+      "icon_path": "res://sprites/ui/acc_phoenix.png"
+    }
+  ]
+}

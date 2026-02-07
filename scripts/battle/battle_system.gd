@@ -191,7 +191,7 @@ func execute_player_attack(target_index: int) -> void:
 		if not target:
 			return
 
-	var damage = calculate_damage(GameState.player_atk, target.def)
+	var damage = calculate_damage(GameState.get_total_atk(), target.def)
 	log_message("You attack " + target.enemy_name + "!")
 
 	var actual_damage = target.take_damage(damage)
@@ -271,7 +271,7 @@ func attempt_run() -> void:
 func execute_enemy_attack(enemy: EnemyBattler) -> void:
 	log_message(enemy.enemy_name + " attacks!")
 
-	var damage = calculate_damage(enemy.atk, GameState.player_def)
+	var damage = calculate_damage(enemy.atk, GameState.get_total_def())
 
 	# Apply defense reduction if defending
 	if player_defending:
@@ -297,7 +297,7 @@ func execute_enemy_skill(enemy: EnemyBattler, skill_id: String) -> void:
 
 	log_message(enemy.enemy_name + " uses " + skill.name + "!")
 
-	var damage = calculate_damage(skill.power, GameState.player_def)
+	var damage = calculate_damage(skill.power, GameState.get_total_def())
 
 	if player_defending:
 		damage = int(damage * 0.5)

@@ -32,6 +32,173 @@
       "usable_in_battle": true,
       "usable_in_field": true,
       "icon_path": "res://sprites/ui/ether_icon.png"
+    },
+    {
+      "id": "superior_potion",
+      "name": "Superior Healing Potion",
+      "type": "consumable",
+      "effect": "heal",
+      "power": 80,
+      "description": "A potent healing elixir that restores significant health.",
+      "usable_in_battle": true,
+      "usable_in_field": true,
+      "icon_path": "res://sprites/ui/potion_superior.png"
+    },
+    {
+      "id": "mega_potion",
+      "name": "Mega Potion",
+      "type": "consumable",
+      "effect": "heal_full",
+      "power": 9999,
+      "description": "The ultimate healing potion. Fully restores HP.",
+      "usable_in_battle": true,
+      "usable_in_field": true,
+      "icon_path": "res://sprites/ui/potion_mega.png"
+    },
+    {
+      "id": "ether_plus",
+      "name": "Ether Plus",
+      "type": "consumable",
+      "effect": "restore_mp",
+      "power": 40,
+      "description": "An enhanced ether that restores more magical energy.",
+      "usable_in_battle": true,
+      "usable_in_field": true,
+      "icon_path": "res://sprites/ui/ether_plus.png"
+    },
+    {
+      "id": "elixir",
+      "name": "Elixir",
+      "type": "consumable",
+      "effect": "full_restore",
+      "power": 9999,
+      "description": "A miracle cure. Fully restores both HP and MP.",
+      "usable_in_battle": true,
+      "usable_in_field": true,
+      "icon_path": "res://sprites/ui/elixir.png"
+    },
+    {
+      "id": "antidote",
+      "name": "Antidote",
+      "type": "consumable",
+      "effect": "cure_poison",
+      "power": 0,
+      "description": "Cures poison status effect.",
+      "usable_in_battle": true,
+      "usable_in_field": true,
+      "icon_path": "res://sprites/ui/antidote.png"
+    },
+    {
+      "id": "echo_herb",
+      "name": "Echo Herb",
+      "type": "consumable",
+      "effect": "cure_silence",
+      "power": 0,
+      "description": "Restores the ability to use skills.",
+      "usable_in_battle": true,
+      "usable_in_field": true,
+      "icon_path": "res://sprites/ui/echo_herb.png"
+    },
+    {
+      "id": "escape_rope",
+      "name": "Escape Rope",
+      "type": "consumable",
+      "effect": "escape_dungeon",
+      "power": 0,
+      "description": "Instantly teleports you back to the village. Cannot be used in battle.",
+      "usable_in_battle": false,
+      "usable_in_field": true,
+      "icon_path": "res://sprites/ui/escape_rope.png"
+    },
+    {
+      "id": "memory_fragment",
+      "name": "Memory Fragment",
+      "type": "key_item",
+      "effect": "none",
+      "power": 0,
+      "description": "A shard of forgotten memory. Collect all fragments to unlock the truth.",
+      "usable_in_battle": false,
+      "usable_in_field": false,
+      "icon_path": "res://sprites/ui/memory_fragment.png"
+    },
+    {
+      "id": "memory_crystal",
+      "name": "Memory Crystal",
+      "type": "key_item",
+      "effect": "none",
+      "power": 0,
+      "description": "Five fragments united into one. It pulses with ancient knowledge.",
+      "usable_in_battle": false,
+      "usable_in_field": false,
+      "icon_path": "res://sprites/ui/memory_crystal.png"
+    },
+    {
+      "id": "luminous_herb",
+      "name": "Luminous Herb",
+      "type": "material",
+      "effect": "none",
+      "power": 0,
+      "description": "A glowing plant from the field. Used in crafting.",
+      "usable_in_battle": false,
+      "usable_in_field": false,
+      "icon_path": "res://sprites/ui/herb_luminous.png"
+    },
+    {
+      "id": "crystal_herb",
+      "name": "Crystal Herb",
+      "type": "material",
+      "effect": "none",
+      "power": 0,
+      "description": "A crystalline plant from the caverns. Used in crafting.",
+      "usable_in_battle": false,
+      "usable_in_field": false,
+      "icon_path": "res://sprites/ui/herb_crystal.png"
+    },
+    {
+      "id": "time_herb",
+      "name": "Time Herb",
+      "type": "material",
+      "effect": "none",
+      "power": 0,
+      "description": "A herb that seems to exist slightly out of sync with time. Used in crafting.",
+      "usable_in_battle": false,
+      "usable_in_field": false,
+      "icon_path": "res://sprites/ui/herb_time.png"
+    },
+    {
+      "id": "iron_ore",
+      "name": "Iron Ore",
+      "type": "material",
+      "effect": "none",
+      "power": 0,
+      "description": "Raw iron ore. Can be sold for gold.",
+      "usable_in_battle": false,
+      "usable_in_field": false,
+      "sell_price": 50,
+      "icon_path": "res://sprites/ui/iron_ore.png"
+    },
+    {
+      "id": "crystal_shard",
+      "name": "Crystal Shard",
+      "type": "material",
+      "effect": "none",
+      "power": 0,
+      "description": "A shard of magical crystal. Can be sold for gold.",
+      "usable_in_battle": false,
+      "usable_in_field": false,
+      "sell_price": 100,
+      "icon_path": "res://sprites/ui/crystal_shard.png"
+    },
+    {
+      "id": "skill_scroll",
+      "name": "Skill Scroll",
+      "type": "consumable",
+      "effect": "learn_skill",
+      "power": 0,
+      "description": "A scroll containing knowledge of a random skill. Use to learn it.",
+      "usable_in_battle": false,
+      "usable_in_field": true,
+      "icon_path": "res://sprites/ui/skill_scroll.png"
     }
   ]
 }

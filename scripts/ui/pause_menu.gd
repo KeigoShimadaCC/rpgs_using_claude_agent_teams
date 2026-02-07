@@ -21,11 +21,14 @@ extends CanvasLayer
 @onready var item_description: Label = $MenuContainer/ItemsPanel/VBoxContainer/DescriptionLabel
 
 # Buttons
-@ontml:invoke>
 @onready var resume_button: Button = $MenuContainer/ButtonsPanel/VBoxContainer/ResumeButton
 @onready var status_button: Button = $MenuContainer/ButtonsPanel/VBoxContainer/StatusButton
 @onready var items_button: Button = $MenuContainer/ButtonsPanel/VBoxContainer/ItemsButton
+@onready var equipment_button: Button = $MenuContainer/ButtonsPanel/VBoxContainer/EquipmentButton
 @onready var quit_button: Button = $MenuContainer/ButtonsPanel/VBoxContainer/QuitButton
+
+# Equipment menu scene
+const EQUIPMENT_MENU_SCENE = preload("res://scenes/ui/equipment_menu.tscn")
 
 var is_paused: bool = false
 var current_panel: String = "status"
@@ -48,6 +51,8 @@ func _connect_buttons() -> void:
 		status_button.pressed.connect(_on_status_pressed)
 	if items_button:
 		items_button.pressed.connect(_on_items_pressed)
+	if equipment_button:
+		equipment_button.pressed.connect(_on_equipment_pressed)
 	if quit_button:
 		quit_button.pressed.connect(_on_quit_pressed)
 	if use_button:
@@ -111,9 +116,17 @@ func _refresh_status() -> void:
 	if gold_label:
 		gold_label.text = "Gold: " + str(GameState.player_gold)
 	if atk_label:
-		atk_label.text = "ATK: " + str(GameState.player_atk)
+		var total_atk = GameState.get_total_atk()
+		if total_atk != GameState.player_atk:
+			atk_label.text = "ATK: %d (+%d)" % [total_atk, total_atk - GameState.player_atk]
+		else:
+			atk_label.text = "ATK: " + str(GameState.player_atk)
 	if def_label:
-		def_label.text = "DEF: " + str(GameState.player_def)
+		var total_def = GameState.get_total_def()
+		if total_def != GameState.player_def:
+			def_label.text = "DEF: %d (+%d)" % [total_def, total_def - GameState.player_def]
+		else:
+			def_label.text = "DEF: " + str(GameState.player_def)
 
 func _refresh_items() -> void:
 	if not items_list:
@@ -145,6 +158,11 @@ func _on_status_pressed() -> void:
 func _on_items_pressed() -> void:
 	_show_panel("items")
 	_refresh_items()
+
+func _on_equipment_pressed() -> void:
+	# Open equipment menu as popup
+	var equipment_menu = EQUIPMENT_MENU_SCENE.instantiate()
+	add_child(equipment_menu)
 
 func _on_quit_pressed() -> void:
 	# Return to title screen

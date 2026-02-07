@@ -26,6 +26,355 @@
       "target_type": "single_enemy",
       "description": "The Shade drains your memories, dealing damage",
       "icon_path": "res://sprites/ui/skill_dark.png"
+    },
+    {
+      "id": "heavy_slam",
+      "name": "Heavy Slam",
+      "mp_cost": 0,
+      "power": 30,
+      "target_type": "single_enemy",
+      "accuracy": 0.7,
+      "description": "A powerful but inaccurate crushing attack"
+    },
+    {
+      "id": "mana_drain",
+      "name": "Mana Drain",
+      "mp_cost": 0,
+      "power": 15,
+      "target_type": "single_enemy",
+      "special": "drain_mp",
+      "description": "Steals MP from the target while dealing damage"
+    },
+    {
+      "id": "time_slow",
+      "name": "Time Slow",
+      "mp_cost": 0,
+      "power": 10,
+      "target_type": "single_enemy",
+      "special": "reduce_agi",
+      "description": "Slows the target, reducing their agility"
+    },
+    {
+      "id": "rock_throw",
+      "name": "Rock Throw",
+      "mp_cost": 0,
+      "power": 22,
+      "target_type": "single_enemy",
+      "description": "Hurls a heavy stone at the enemy"
+    },
+    {
+      "id": "swift_strike",
+      "name": "Swift Strike",
+      "mp_cost": 0,
+      "power": 18,
+      "target_type": "single_enemy",
+      "accuracy": 1.0,
+      "description": "A lightning-fast attack that never misses"
+    },
+    {
+      "id": "paper_cut",
+      "name": "Paper Cut",
+      "mp_cost": 0,
+      "power": 12,
+      "target_type": "single_enemy",
+      "hit_count": 3,
+      "description": "Multiple razor-sharp paper slashes"
+    },
+    {
+      "id": "knowledge_blast",
+      "name": "Knowledge Blast",
+      "mp_cost": 0,
+      "power": 28,
+      "target_type": "single_enemy",
+      "element": "magic",
+      "description": "Unleashes raw magical energy from forbidden knowledge"
+    },
+    {
+      "id": "soul_drain",
+      "name": "Soul Drain",
+      "mp_cost": 0,
+      "power": 20,
+      "target_type": "single_enemy",
+      "special": "hp_steal",
+      "description": "Drains life force from the target"
+    },
+    {
+      "id": "curse",
+      "name": "Curse",
+      "mp_cost": 0,
+      "power": 5,
+      "target_type": "single_enemy",
+      "special": "reduce_atk",
+      "description": "Curses the target, weakening their attacks"
+    },
+    {
+      "id": "crystal_barrier",
+      "name": "Crystal Barrier",
+      "mp_cost": 0,
+      "power": 0,
+      "target_type": "self",
+      "special": "absorb_damage",
+      "description": "Creates a crystal shield that absorbs damage"
+    },
+    {
+      "id": "shatter",
+      "name": "Shatter",
+      "mp_cost": 0,
+      "power": 25,
+      "target_type": "all_enemies",
+      "description": "Explodes crystal fragments in all directions"
+    },
+    {
+      "id": "backstab",
+      "name": "Backstab",
+      "mp_cost": 0,
+      "power": 35,
+      "target_type": "single_enemy",
+      "crit_chance": 0.5,
+      "description": "A stealthy attack with high critical hit chance"
+    },
+    {
+      "id": "vanish",
+      "name": "Vanish",
+      "mp_cost": 0,
+      "power": 0,
+      "target_type": "self",
+      "special": "increase_evasion",
+      "description": "Melts into shadows, greatly increasing evasion"
+    },
+    {
+      "id": "mirror_image",
+      "name": "Mirror Image",
+      "mp_cost": 0,
+      "power": 0,
+      "target_type": "self",
+      "special": "create_copies",
+      "description": "Creates illusory copies to confuse enemies"
+    },
+    {
+      "id": "confusion",
+      "name": "Confusion",
+      "mp_cost": 0,
+      "power": 8,
+      "target_type": "single_enemy",
+      "special": "confuse",
+      "description": "Disorients the target with illusions"
+    },
+    {
+      "id": "guardian_strike",
+      "name": "Guardian Strike",
+      "mp_cost": 0,
+      "power": 35,
+      "target_type": "single_enemy",
+      "description": "A powerful defensive counterattack"
+    },
+    {
+      "id": "protective_barrier",
+      "name": "Protective Barrier",
+      "mp_cost": 0,
+      "power": 0,
+      "target_type": "self",
+      "special": "increase_def",
+      "description": "Raises a protective barrier, boosting defense"
+    },
+    {
+      "id": "regenerate",
+      "name": "Regenerate",
+      "mp_cost": 0,
+      "power": 30,
+      "target_type": "self",
+      "special": "heal_self",
+      "description": "Slowly regenerates lost health"
+    },
+    {
+      "id": "gear_spin",
+      "name": "Gear Spin",
+      "mp_cost": 0,
+      "power": 15,
+      "target_type": "single_enemy",
+      "hit_count": 4,
+      "description": "Rapidly spinning gears strike multiple times"
+    },
+    {
+      "id": "overheat",
+      "name": "Overheat",
+      "mp_cost": 0,
+      "power": 0,
+      "target_type": "self",
+      "special": "increase_atk",
+      "description": "Overclocks mechanisms, increasing attack power"
+    },
+    {
+      "id": "repair",
+      "name": "Repair",
+      "mp_cost": 0,
+      "power": 50,
+      "target_type": "self",
+      "special": "heal_self",
+      "description": "Emergency repair protocols restore health"
+    },
+    {
+      "id": "natures_wrath",
+      "name": "Nature's Wrath",
+      "mp_cost": 0,
+      "power": 40,
+      "target_type": "all_enemies",
+      "element": "nature",
+      "description": "The fury of nature strikes all foes"
+    },
+    {
+      "id": "vine_whip",
+      "name": "Vine Whip",
+      "mp_cost": 0,
+      "power": 28,
+      "target_type": "single_enemy",
+      "special": "reduce_agi",
+      "description": "Thorny vines entangle and strike the enemy"
+    },
+    {
+      "id": "photosynthesis",
+      "name": "Photosynthesis",
+      "mp_cost": 0,
+      "power": 60,
+      "target_type": "self",
+      "special": "heal_self",
+      "description": "Absorbs natural energy to restore health"
+    },
+    {
+      "id": "enrage",
+      "name": "Enrage",
+      "mp_cost": 0,
+      "power": 0,
+      "target_type": "self",
+      "special": "berserk",
+      "description": "Enters a rage, greatly boosting all stats"
+    },
+    {
+      "id": "crystal_storm",
+      "name": "Crystal Storm",
+      "mp_cost": 0,
+      "power": 45,
+      "target_type": "all_enemies",
+      "element": "crystal",
+      "description": "A devastating storm of crystal shards"
+    },
+    {
+      "id": "earthquake",
+      "name": "Earthquake",
+      "mp_cost": 0,
+      "power": 38,
+      "target_type": "all_enemies",
+      "description": "Shakes the earth, damaging all enemies"
+    },
+    {
+      "id": "titans_roar",
+      "name": "Titan's Roar",
+      "mp_cost": 0,
+      "power": 20,
+      "target_type": "all_enemies",
+      "special": "full_debuff",
+      "description": "A terrifying roar that weakens all enemies"
+    },
+    {
+      "id": "harden",
+      "name": "Harden",
+      "mp_cost": 0,
+      "power": 0,
+      "target_type": "self",
+      "special": "increase_def_major",
+      "description": "Crystallizes, massively boosting defense"
+    },
+    {
+      "id": "shield_bash",
+      "name": "Shield Bash",
+      "mp_cost": 10,
+      "power": 20,
+      "target_type": "single_enemy",
+      "special": "stun_chance",
+      "description": "A defensive strike with a chance to stun",
+      "icon_path": "res://sprites/ui/skill_shield.png"
+    },
+    {
+      "id": "flame_strike",
+      "name": "Flame Strike",
+      "mp_cost": 12,
+      "power": 35,
+      "target_type": "single_enemy",
+      "element": "fire",
+      "description": "A powerful flame-imbued attack",
+      "icon_path": "res://sprites/ui/skill_fire.png"
+    },
+    {
+      "id": "thunder_bolt",
+      "name": "Thunder Bolt",
+      "mp_cost": 15,
+      "power": 40,
+      "target_type": "single_enemy",
+      "element": "lightning",
+      "description": "Strikes with the power of lightning",
+      "icon_path": "res://sprites/ui/skill_thunder.png"
+    },
+    {
+      "id": "ice_shard",
+      "name": "Ice Shard",
+      "mp_cost": 12,
+      "power": 35,
+      "target_type": "single_enemy",
+      "element": "ice",
+      "special": "slow",
+      "description": "Launches razor-sharp ice that slows the enemy",
+      "icon_path": "res://sprites/ui/skill_ice.png"
+    },
+    {
+      "id": "ultima",
+      "name": "Ultima",
+      "mp_cost": 99,
+      "power": 150,
+      "target_type": "all_enemies",
+      "element": "ultimate",
+      "description": "The ultimate destructive magic",
+      "icon_path": "res://sprites/ui/skill_ultima.png"
+    },
+    {
+      "id": "protect",
+      "name": "Protect",
+      "mp_cost": 10,
+      "power": 0,
+      "target_type": "single_ally",
+      "special": "increase_def",
+      "description": "Creates a protective barrier around an ally",
+      "icon_path": "res://sprites/ui/skill_protect.png"
+    },
+    {
+      "id": "cleanse",
+      "name": "Cleanse",
+      "mp_cost": 5,
+      "power": 0,
+      "target_type": "single_ally",
+      "special": "remove_status",
+      "description": "Removes negative status effects from an ally",
+      "icon_path": "res://sprites/ui/skill_cleanse.png"
+    },
+    {
+      "id": "holy_light",
+      "name": "Holy Light",
+      "mp_cost": 15,
+      "power": 30,
+      "target_type": "single_enemy",
+      "element": "holy",
+      "special": "heal_self_minor",
+      "description": "Strikes with holy light while healing the caster",
+      "icon_path": "res://sprites/ui/skill_holy.png"
+    },
+    {
+      "id": "revive",
+      "name": "Revive",
+      "mp_cost": 20,
+      "power": 0,
+      "target_type": "fallen_ally",
+      "special": "revive",
+      "description": "Brings a fallen ally back with 50% HP",
+      "icon_path": "res://sprites/ui/skill_revive.png"
     }
   ]
 }

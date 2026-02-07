@@ -8,8 +8,8 @@ const MOVE_SPEED: float = 150.0
 var nearby_interactables: Array[Node] = []
 var current_facing_direction: Vector2 = Vector2.DOWN
 
-# Animation
-@onready var sprite: Sprite2D = $Sprite2D
+# Animation (scene uses Polygon2D placeholder named Sprite2D)
+@onready var sprite = get_node("Sprite2D")
 @onready var animation_player: AnimationPlayer = $AnimationPlayer if has_node("AnimationPlayer") else null
 
 # Signals

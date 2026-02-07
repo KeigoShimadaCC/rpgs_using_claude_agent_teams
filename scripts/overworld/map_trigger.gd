@@ -112,19 +112,9 @@ func _fade_transition(player: Node2D) -> void:
 	tween.tween_property(fade_rect, "color:a", 1.0, fade_duration)
 	await tween.finished
 
-	# Change scene
+	# Change scene (this node is freed after change; do not use get_tree() after)
 	_change_scene()
-
-	# Fade in (will happen in new scene)
-	await get_tree().create_timer(0.1).timeout
-
-	tween = create_tween()
-	tween.tween_property(fade_rect, "color:a", 0.0, fade_duration)
-	await tween.finished
-
-	# Clean up
-	canvas_layer.queue_free()
-	transition_completed.emit()
+	# Note: Fade-in can be done by the new scene's MapController when ready
 
 func _change_scene() -> void:
 	# Store spawn position for the new scene
