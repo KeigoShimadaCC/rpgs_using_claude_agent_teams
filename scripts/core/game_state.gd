@@ -38,6 +38,13 @@ var quest_flags: Dictionary = {
 	# "defeated_boss": false
 }
 
+# Battle settings
+var auto_battle_enabled: bool = false
+
+# Encounter system
+var steps_since_battle: int = 0
+var grace_period_steps: int = 5
+
 # Level-up constants
 const EXP_BASE: int = 100
 const EXP_GROWTH: float = 1.5
