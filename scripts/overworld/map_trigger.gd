@@ -130,12 +130,25 @@ func _handle_battle_trigger() -> void:
 	if enemy_ids.is_empty():
 		print("Battle trigger has no enemy IDs set!")
 		return
+	
+	# Check grace period - don't trigger encounters if player just finished a battle
+	if GameState.steps_since_battle < GameState.grace_period_steps:
+		print("Grace period active - ", GameState.steps_since_battle, "/", GameState.grace_period_steps, " steps")
+		return
+	
+	# Random encounter check (15% chance, reduced from previous rate)
+	if randf() > 0.15:
+		return
 
 	# Check if BattleManager exists
 	if has_node("/root/BattleManager"):
 		var battle_manager = get_node("/root/BattleManager")
 		if battle_manager.has_method("start_battle"):
 			can_trigger = false  # Prevent retriggering
+			
+			# Reset step counter when battle starts
+			GameState.steps_since_battle = 0
+			
 			battle_manager.call_deferred("start_battle", enemy_ids, _on_battle_victory, _on_battle_defeat, false)
 		else:
 			print("BattleManager does not have start_battle method!")

@@ -42,7 +42,7 @@ var quest_flags: Dictionary = {
 var auto_battle_enabled: bool = false
 
 # Encounter system
-var steps_since_battle: int = 0
+var steps_since_battle: int = 999  # Start high to allow first encounter
 var grace_period_steps: int = 5
 
 # Level-up constants

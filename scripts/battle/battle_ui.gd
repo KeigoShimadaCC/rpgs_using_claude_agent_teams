@@ -72,6 +72,19 @@ func create_action_menu() -> void:
 		
 	# Setup neighbors for keyboard navigation
 	_setup_button_neighbors(action_buttons)
+	
+	# Update auto button text based on current state
+	update_auto_button_text()
+
+## Update auto button text based on GameState
+func update_auto_button_text() -> void:
+	# Find the Auto button (index 4 in the actions array)
+	if action_buttons.size() > 4:
+		var auto_button = action_buttons[4]
+		if GameState.auto_battle_enabled:
+			auto_button.text = "Auto: ON"
+		else:
+			auto_button.text = "Auto: OFF"
 
 ## Helper to setup button focus neighbors
 func _setup_button_neighbors(buttons: Array) -> void:
@@ -100,7 +113,13 @@ func _on_action_button_pressed(action_name: String) -> void:
 		"Item":
 			show_item_menu()
 		"Auto":
-			send_action({"type": "auto"})
+			# Toggle auto-battle mode
+			GameState.auto_battle_enabled = !GameState.auto_battle_enabled
+			update_auto_button_text()
+			
+			# If just enabled, execute auto action immediately
+			if GameState.auto_battle_enabled:
+				send_action({"type": "auto"})
 		"Run":
 			send_action({"type": "run"})
 

@@ -5,8 +5,16 @@ extends Node
 
 var tests_passed = 0
 var tests_failed = 0
+var GameState # Manual reference for testing
 
 func _ready() -> void:
+	# Handle missing GameState singleton
+	if has_node("/root/GameState"):
+		GameState = get_node("/root/GameState")
+	else:
+		var GS = load("res://scripts/core/game_state.gd")
+		GameState = GS.new()
+		add_child(GameState)
 	print("=== GAME STATE TESTS ===\n")
 	
 	# Save original state

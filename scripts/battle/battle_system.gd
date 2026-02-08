@@ -94,12 +94,22 @@ func start_player_turn() -> void:
 	current_state = BattleState.PLAYER_TURN
 	is_player_turn = true
 	player_defending = false
-	turn_started.emit(true)
 	log_message("Your turn!")
-
-	# Enable player action UI
-	if ui_controller and ui_controller.has_method("enable_action_menu"):
-		ui_controller.enable_action_menu(true)
+	turn_started.emit(true) # Changed to true for consistency with signal definition
+	
+	# Update UI turn indicator
+	if ui_controller and ui_controller.has_method("set_turn_indicator"):
+		ui_controller.set_turn_indicator(true)
+	
+	# Check if auto-battle is enabled
+	if GameState.auto_battle_enabled:
+		# Auto-execute turn
+		await get_tree().create_timer(0.3).timeout
+		await perform_auto_action()
+	else:
+		# Enable player action UI for manual control
+		if ui_controller and ui_controller.has_method("enable_action_menu"):
+			ui_controller.enable_action_menu(true)
 
 ## Start enemy turn
 func start_enemy_turn() -> void:

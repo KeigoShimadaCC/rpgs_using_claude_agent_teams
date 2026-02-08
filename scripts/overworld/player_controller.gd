@@ -7,6 +7,8 @@ const MOVE_SPEED: float = 150.0
 @onready var interaction_area: Area2D = $InteractionArea
 var nearby_interactables: Array[Node] = []
 var current_facing_direction: Vector2 = Vector2.DOWN
+var distance_accumulator: float = 0.0
+const STEP_DISTANCE: float = 32.0  # Distance to count as one step
 
 # Animation (scene uses Polygon2D placeholder named Sprite2D)
 @onready var sprite = get_node("Sprite2D")
@@ -39,11 +41,26 @@ func _physics_process(_delta: float) -> void:
 		input_direction = input_direction.normalized()
 		current_facing_direction = input_direction
 
+	# Store previous position for step tracking
+	var previous_position = global_position
+
 	# Set velocity
 	velocity = input_direction * MOVE_SPEED
 
 	# Move and collide
 	move_and_slide()
+	
+	# Track steps for encounter system
+	if global_position != previous_position:
+		# Player actually moved
+		var distance_moved = global_position.distance_to(previous_position)
+		distance_accumulator += distance_moved
+		
+		if distance_accumulator >= STEP_DISTANCE:
+			var steps = int(distance_accumulator / STEP_DISTANCE)
+			GameState.steps_since_battle += steps
+			distance_accumulator -= steps * STEP_DISTANCE
+			# print("Step taken! Total steps since battle: ", GameState.steps_since_battle)
 
 	# Update animation
 	_update_animation(input_direction)
