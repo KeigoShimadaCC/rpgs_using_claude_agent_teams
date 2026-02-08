@@ -24,23 +24,19 @@ A turn-based JRPG-style RPG built with Godot 4, featuring exploration, combat, a
 - **Main Scene**: `res://scenes/main/title_screen.tscn`
 - **Game State**: Managed by `GameState` singleton (autoloaded)
 - **Data Files**: JSON-based content in `data/` directory
+- **Testing**: Automated suites in `scripts/test/`
 
 ## Project Structure
 
 ```
 ├── scenes/          # Godot scene files (.tscn)
-│   ├── main/       # Title, game over, pause menu
-│   ├── overworld/  # Maps and player scenes
-│   ├── battle/     # Battle system scenes
-│   └── dialogue/   # Dialogue UI scenes
 ├── scripts/        # GDScript files
 │   ├── core/       # Core systems (GameState, managers)
 │   ├── overworld/  # Overworld gameplay scripts
 │   ├── battle/     # Battle system scripts
-│   └── ui/         # UI controller scripts
-├── sprites/        # Art assets
-├── data/           # JSON data files (enemies, items, skills, dialogues)
-└── docs/           # Documentation
+│   ├── ui/         # UI controller scripts
+│   └── test/       # Automated test suites (Unit, Integration)
+├── docs/           # System documentation
 ```
 
 ## Controls
@@ -48,57 +44,34 @@ A turn-based JRPG-style RPG built with Godot 4, featuring exploration, combat, a
 - **Movement**: WASD or Arrow Keys
 - **Interact**: E or Space
 - **Pause**: Escape
+- **Battle Auto**: A (Toggle)
 - **Accept/Advance**: Space or Enter
-- **Cancel**: Escape
 
 ## Game Features (MVP)
 
 ### Core Systems
-- ✅ Top-down exploration across 2 maps (Village Hub + Field/Ruins)
-- ✅ Turn-based battle system (Final Fantasy/Dragon Quest-style)
-- ✅ Complete combat actions: Attack, Defend, Skill, Item, Run
-- ✅ 4 enemy types (Slime, Goblin, Shadow Wolf, Archivist Shade boss)
+- ✅ Top-down exploration across 2 maps
+- ✅ Turn-based battle system (Attack, Defend, Skill, Item, Run)
+- ✅ **New: Persistent Auto-Battle** - AI takes over turns until toggled off
+- ✅ **New: Refined Encounter Logic** - Distance-based step counting with 5-step post-battle grace period
 - ✅ Character progression (EXP, leveling L1→L3, stat growth)
 - ✅ Inventory system (Healing Potion, Ether, quest items)
 
-### Narrative & Progression
-- ✅ Quest system with flag-based gating
-- ✅ Interactive NPCs (Elder, Companion) with branching dialogue
-- ✅ Complete story arc: Hook → Twist → Boss → Choice → Resolution
-- ✅ Meaningful player choice affecting ending
-- ✅ Two distinct ending paths (Return Memory / Free Memory)
-- ✅ Victory screen with credits
-
-### Polish
-- ✅ Title screen with New Game option
-- ✅ Pause menu with Status & Inventory
-- ✅ Game Over screen on defeat
-- ✅ Dialogue system with typewriter effect
-- ✅ Smooth scene transitions
-- ✅ Consistent visual style (geometric placeholders)
-
 ## Documentation
 
-### Project Overview
+### Developer Guides
+- [docs/GODOT_PATTERNS.md](docs/GODOT_PATTERNS.md) - **Recommended Reading**: Core architecture and Godot-specific patterns
+- [docs/TESTING.md](docs/TESTING.md) - How to run and maintain automated tests
 - [CLAUDE.md](CLAUDE.md) - Development guide for AI assistants
-- [docs/project_spec.md](docs/project_spec.md) - Technical specification
-- [docs/NEXT_STEPS.md](docs/NEXT_STEPS.md) - Enhancement roadmap
 
 ### System Documentation
 - [docs/battle_system_architecture.md](docs/battle_system_architecture.md) - Battle system design
-- [docs/battle_system_integration.md](docs/battle_system_integration.md) - Battle integration guide
 - [docs/overworld_systems.md](docs/overworld_systems.md) - Overworld API reference
-- [docs/maps_and_ui.md](docs/maps_and_ui.md) - Map layout and UI guide
 - [docs/content_schemas.md](docs/content_schemas.md) - Data format reference
-- [docs/dialogue_ui_spec.md](docs/dialogue_ui_spec.md) - Dialogue system spec
 
-### Content & Story
-- [docs/scenario_outline.md](docs/scenario_outline.md) - Complete narrative structure
-- [docs/character_notes.md](docs/character_notes.md) - NPC profiles and motivations
-
-### Testing & Integration
-- [docs/vertical_slice_test_report.md](docs/vertical_slice_test_report.md) - Integration test results
-- [docs/mvp_integration_checklist.md](docs/mvp_integration_checklist.md) - Final QA checklist
+### Testing & Quality Assurance
+- [scripts/test/run_tests.gd](scripts/test/run_tests.gd) - CLI test runner
+- [MANUAL_TEST_CHECKLIST.md](MANUAL_TEST_CHECKLIST.md) - Step-by-step manual QA guide
 
 ## Team
 
