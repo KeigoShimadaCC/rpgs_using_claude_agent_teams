@@ -1,0 +1,101 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/overworld/map_controller.gd" id="1_map_controller"]
+[ext_resource type="PackedScene" path="res://scenes/overworld/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/overworld/npc.tscn" id="3_npc"]
+[ext_resource type="Script" path="res://scripts/overworld/map_trigger.gd" id="4_trigger"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trigger"]
+size = Vector2(32, 16)
+
+[node name="MapCForest" type="Node2D"]
+script = ExtResource("1_map_controller")
+
+[node name="GroundDecoration" type="Node2D" parent="."]
+
+[node name="ForestGround" type="Polygon2D" parent="GroundDecoration"]
+color = Color(0.1, 0.4, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 480, 0, 480, 360, 0, 360)
+
+[node name="Path" type="Polygon2D" parent="GroundDecoration"]
+position = Vector2(0, 160)
+color = Color(0.4, 0.3, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 480, 0, 480, 40, 0, 40)
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="NorthWall" type="StaticBody2D" parent="Walls"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="WallVisual" type="Polygon2D" parent="Walls/NorthWall"]
+color = Color(0.05, 0.2, 0.1, 1)
+polygon = PackedVector2Array(0, -16, 480, -16, 480, 0, 0, 0)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Walls/NorthWall"]
+polygon = PackedVector2Array(0, -16, 480, -16, 480, 0, 0, 0)
+
+[node name="SouthWall" type="StaticBody2D" parent="Walls"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="WallVisual" type="Polygon2D" parent="Walls/SouthWall"]
+color = Color(0.05, 0.2, 0.1, 1)
+polygon = PackedVector2Array(0, 360, 480, 360, 480, 376, 0, 376)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Walls/SouthWall"]
+polygon = PackedVector2Array(0, 360, 480, 360, 480, 376, 0, 376)
+
+[node name="WestWall" type="StaticBody2D" parent="Walls"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="WallVisual" type="Polygon2D" parent="Walls/WestWall"]
+color = Color(0.05, 0.2, 0.1, 1)
+polygon = PackedVector2Array(-16, 0, 0, 0, 0, 360, -16, 360)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Walls/WestWall"]
+polygon = PackedVector2Array(-16, 0, 0, 0, 0, 360, -16, 360)
+
+[node name="EastWall" type="StaticBody2D" parent="Walls"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="WallVisual" type="Polygon2D" parent="Walls/EastWall"]
+color = Color(0.05, 0.2, 0.1, 1)
+polygon = PackedVector2Array(480, 0, 496, 0, 496, 360, 480, 360)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Walls/EastWall"]
+polygon = PackedVector2Array(480, 0, 496, 0, 496, 360, 480, 360)
+
+[node name="Triggers" type="Node2D" parent="."]
+
+[node name="ExitToVillage" type="Area2D" parent="Triggers"]
+position = Vector2(464, 180)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_trigger")
+trigger_type = 0
+target_map_path = "res://scenes/overworld/map_a_village.tscn"
+target_spawn_marker = "FromForest"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/ExitToVillage"]
+shape = SubResource("RectangleShape2D_trigger")
+
+[node name="BattleTrigger" type="Area2D" parent="Triggers"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_trigger")
+trigger_type = 1
+enemy_ids = ["slime", "goblin"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Triggers/BattleTrigger"]
+polygon = PackedVector2Array(40, 40, 100, 40, 100, 140, 40, 140)
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="FromVillage" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(440, 180)
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(440, 180)

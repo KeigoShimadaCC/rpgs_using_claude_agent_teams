@@ -1,0 +1,42 @@
+{
+    "shops": [
+        {
+            "id": "village_general_store",
+            "name": "Village General Store",
+            "inventory": [
+                {
+                    "id": "healing_potion",
+                    "price": 50
+                },
+                {
+                    "id": "mana_ether",
+                    "price": 100
+                },
+                {
+                    "id": "antidote",
+                    "price": 25
+                }
+            ],
+            "welcome_message": "Welcome to our store! How can I help you today?"
+        },
+        {
+            "id": "desert_armory",
+            "name": "Desert Armory",
+            "inventory": [
+                {
+                    "id": "iron_sword",
+                    "price": 500
+                },
+                {
+                    "id": "iron_armor",
+                    "price": 750
+                },
+                {
+                    "id": "steel_shield",
+                    "price": 400
+                }
+            ],
+            "welcome_message": "Looking for better gear? You've come to the right place."
+        }
+    ]
+}

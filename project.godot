@@ -21,6 +21,7 @@ GameState="*res://scripts/core/game_state.gd"
 BattleManager="*res://scripts/core/battle_manager.gd"
 DialogueManager="*res://scripts/core/dialogue_manager.gd"
 FocusManager="*res://scripts/core/focus_manager.gd"
+ShopUI="*res://scenes/ui/shop_menu.tscn"
 
 [display]
 

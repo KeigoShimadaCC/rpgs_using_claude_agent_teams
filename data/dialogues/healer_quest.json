@@ -1,0 +1,100 @@
+{
+    "dialogue_id": "healer_quest",
+    "nodes": [
+        {
+            "id": "start",
+            "speaker": "Healer",
+            "text": "Hello there traveler. You look like the helpful sort.",
+            "choices": [
+                {
+                    "text": "How can I help?",
+                    "next": "explain_problem",
+                    "check_quest": "q_collect_herbs:not_started"
+                },
+                {
+                    "text": "About those herbs...",
+                    "next": "check_progress",
+                    "check_quest": "q_collect_herbs:active"
+                },
+                {
+                    "text": "Thank you for the help!",
+                    "next": "post_quest",
+                    "check_quest": "q_collect_herbs:completed"
+                },
+                {
+                    "text": "Just passing by.",
+                    "next": "bye"
+                }
+            ]
+        },
+        {
+            "id": "explain_problem",
+            "speaker": "Healer",
+            "text": "My supply of Medicinal Herbs is running low. They grow in the forest to the west.",
+            "next": "offer_quest"
+        },
+        {
+            "id": "offer_quest",
+            "speaker": "Healer",
+            "text": "If you could bring me 3 herbs, I'll reward you with some gold and potions.",
+            "choices": [
+                {
+                    "text": "I'll do it!",
+                    "next": "accept",
+                    "command": "ACCEPT_QUEST:q_collect_herbs"
+                },
+                {
+                    "text": "Not right now.",
+                    "next": "bye"
+                }
+            ]
+        },
+        {
+            "id": "accept",
+            "speaker": "Healer",
+            "text": "Thank you! Please be careful, the forest can be dangerous.",
+            "next": null
+        },
+        {
+            "id": "check_progress",
+            "speaker": "Healer",
+            "text": "Do you have the herbs?",
+            "choices": [
+                {
+                    "text": "Yes, here they are.",
+                    "next": "complete",
+                    "check_quest": "q_collect_herbs:ready",
+                    "command": "COMPLETE_QUEST:q_collect_herbs"
+                },
+                {
+                    "text": "Still looking.",
+                    "next": "remaining"
+                }
+            ]
+        },
+        {
+            "id": "complete",
+            "speaker": "Healer",
+            "text": "Wonderful! These are perfect. Here is your reward as promised.",
+            "next": null
+        },
+        {
+            "id": "remaining",
+            "speaker": "Healer",
+            "text": "I still need 3 herbs in total. Keep looking in the forest areas.",
+            "next": null
+        },
+        {
+            "id": "post_quest",
+            "speaker": "Healer",
+            "text": "Thanks again for the herbs. Stay safe out there!",
+            "next": null
+        },
+        {
+            "id": "bye",
+            "speaker": "Healer",
+            "text": "Safe travels.",
+            "next": null
+        }
+    ]
+}

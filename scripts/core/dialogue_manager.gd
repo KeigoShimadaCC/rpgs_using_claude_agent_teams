@@ -15,6 +15,8 @@ signal choices_presented(choices: Array)
 var current_dialogue: Dictionary = {}
 var current_node_id: String = ""
 var is_dialogue_active: bool = false
+var _gs_override = null
+var _shop_ui_override = null
 
 ## Constants
 const DIALOGUE_PATH = "res://data/dialogues/"
@@ -112,8 +114,12 @@ func select_choice(choice_index: int) -> void:
 
 	# Apply set_flag if present
 	if selected_choice.has("set_flag") and selected_choice.set_flag != "":
-		GameState.set_flag(selected_choice.set_flag, true)
+		_get_gs().set_flag(selected_choice.set_flag, true)
 		print("DialogueManager: Set flag '" + selected_choice.set_flag + "' to true")
+
+	# Apply command if present
+	if selected_choice.has("command") and selected_choice.command != "":
+		_execute_command(selected_choice.command)
 
 	# Get next node ID
 	var next_id = selected_choice.get("next", null)
@@ -229,17 +235,99 @@ func display_current_node() -> void:
 	# Also emit choices_presented for backward compatibility
 	if not available_choices.is_empty():
 		choices_presented.emit(available_choices)
+	
+	# Execute command on entry if present
+	if current_node.has("command") and current_node.command != "":
+		_execute_command(current_node.command)
 
 # Filter choices based on check_flag requirements
 func get_available_choices(choices: Array) -> Array:
 	var available = []
 	for choice in choices:
-		# Check if this choice has a flag requirement
+		var is_available = true
+		
+		# Check flag requirement
 		if choice.has("check_flag") and choice.check_flag != "":
-			# Only include if flag is set
-			if GameState.has_flag(choice.check_flag):
-				available.append(choice)
-		else:
-			# No flag requirement, always available
+			if not _get_gs().has_flag(choice.check_flag):
+				is_available = false
+		
+		# Check quest requirement
+		if is_available and choice.has("check_quest") and choice.check_quest != "":
+			if not _check_quest_condition(choice.check_quest):
+				is_available = false
+				
+		if is_available:
 			available.append(choice)
+			
 	return available
+
+func _get_gs():
+	if _gs_override: return _gs_override
+	var tree = Engine.get_main_loop() as SceneTree
+	if tree and tree.root.has_node("GameState"):
+		return tree.root.get_node("GameState")
+	return null
+
+func _get_shop_ui():
+	if _shop_ui_override: return _shop_ui_override
+	var tree = Engine.get_main_loop() as SceneTree
+	if tree:
+		if tree.root.has_node("ShopUI"):
+			return tree.root.get_node("ShopUI")
+		return tree.root.find_child("ShopUI", true, false)
+	return null
+
+func _check_quest_condition(condition: String) -> bool:
+	# Format: "quest_id:status" 
+	# Status can be: active, completed, ready (to turn in), not_started
+	var parts = condition.split(":")
+	if parts.size() < 2:
+		return false
+		
+	var id = parts[0]
+	var status = parts[1]
+	
+	match status:
+		"active":
+			return _get_gs().is_quest_active(id)
+		"completed":
+			return _get_gs().is_quest_completed(id)
+		"ready":
+			return _get_gs().can_turn_in_quest(id)
+		"not_started":
+			return not _get_gs().is_quest_active(id) and not _get_gs().is_quest_completed(id)
+			
+	return false
+
+func _execute_command(command: String) -> void:
+	print("DialogueManager: Executing command: " + command)
+	var parts = command.split(":")
+	var cmd = parts[0]
+	var arg = parts[1] if parts.size() > 1 else ""
+	
+	match cmd:
+		"ACCEPT_QUEST":
+			_get_gs().accept_quest(arg)
+		"COMPLETE_QUEST":
+			_get_gs().complete_quest(arg)
+		"OPEN_SHOP":
+			_open_shop_ui(arg)
+		"GIVE_ITEM":
+			var sub_parts = arg.split(",")
+			if sub_parts.size() >= 2:
+				_get_gs().add_item(sub_parts[0], int(sub_parts[1]))
+		"SET_FLAG":
+			_get_gs().set_flag(arg, true)
+
+func _open_shop_ui(shop_id: String) -> void:
+	# Find ShopUI in the current scene tree
+	var shop_ui = _get_shop_ui()
+	
+	if shop_ui:
+		if shop_ui.has_method("open_shop"):
+			shop_ui.open_shop(shop_id)
+			print("DialogueManager: Opened shop: " + shop_id)
+		else:
+			push_error("DialogueManager: ShopUI found but missing open_shop method")
+	else:
+		push_error("DialogueManager: ShopUI not found in scene tree for command OPEN_SHOP:" + shop_id)

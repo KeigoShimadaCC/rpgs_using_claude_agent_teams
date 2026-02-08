@@ -38,6 +38,14 @@ var quest_flags: Dictionary = {
 	# "defeated_boss": false
 }
 
+# Quest System
+var active_quests: Dictionary = {} # quest_id -> { "objectives": [current_counts] }
+var completed_quests: Array = []
+var quests_data: Dictionary = {}
+
+# Shop System
+var shops_data: Dictionary = {}
+
 # Battle settings
 var auto_battle_enabled: bool = false
 
@@ -71,6 +79,8 @@ signal flag_changed(flag_name: String, value: bool)
 func _ready() -> void:
 	# Load equipment data on startup
 	load_equipment_data()
+	load_quests_data()
+	load_shops_data()
 
 # Experience and Leveling
 func add_exp(amount: int) -> void:
@@ -482,3 +492,186 @@ func get_equipment_effect_value(effect_name: String, value_key: String) -> int:
 			total += accessory.get(value_key, 0)
 
 	return total
+
+# --- Quest System Logic ---
+
+func load_quests_data() -> void:
+	var path = "res://data/quests.json"
+	if not FileAccess.file_exists(path):
+		print("DEBUG: Quests data file not found: " + path)
+		return
+		
+	var file = FileAccess.open(path, FileAccess.READ)
+	var json_string = file.get_as_text()
+	file.close()
+	
+	var json = JSON.new()
+	var error = json.parse(json_string)
+	if error == OK:
+		var data = json.get_data()
+		if data.has("quests"):
+			for quest in data.quests:
+				quests_data[quest.id] = quest
+		print("DEBUG: Loaded " + str(quests_data.size()) + " quests")
+	else:
+		push_error("Failed to parse quests.json: " + json.get_error_message())
+
+func get_quest_data(quest_id: String) -> Dictionary:
+	if quests_data.is_empty():
+		load_quests_data()
+	return quests_data.get(quest_id, {})
+
+func is_quest_active(quest_id: String) -> bool:
+	return active_quests.has(quest_id)
+
+func is_quest_completed(quest_id: String) -> bool:
+	return quest_id in completed_quests
+
+func accept_quest(quest_id: String) -> bool:
+	if is_quest_active(quest_id) or is_quest_completed(quest_id):
+		return false
+	
+	var data = get_quest_data(quest_id)
+	if data.is_empty():
+		push_error("Cannot accept unknown quest: " + quest_id)
+		return false
+		
+	# Initialize objective tracking
+	var objective_progress = []
+	for obj in data.objectives:
+		objective_progress.append(0)
+		
+	active_quests[quest_id] = {
+		"objectives": objective_progress
+	}
+	print("Quest accepted: " + data.title)
+	return true
+
+func update_quest_progress(type: String, target: String, amount: int = 1) -> void:
+	# Check all active quests for matching objectives
+	for quest_id in active_quests.keys():
+		var data = get_quest_data(quest_id)
+		var progress = active_quests[quest_id].objectives
+		var updated = false
+		
+		for i in range(data.objectives.size()):
+			var obj = data.objectives[i]
+			if obj.type == type and obj.target == target:
+				# Don't update if already complete
+				if progress[i] < obj.count:
+					progress[i] = min(progress[i] + amount, obj.count)
+					updated = true
+					print("Quest update [" + data.title + "]: " + obj.description + " (" + str(progress[i]) + "/" + str(obj.count) + ")")
+		
+		if updated:
+			check_quest_completion(quest_id)
+
+func check_quest_completion(quest_id: String) -> void:
+	if not is_quest_active(quest_id):
+		return
+		
+	var data = get_quest_data(quest_id)
+	var progress = active_quests[quest_id].objectives
+	var all_complete = true
+	
+	for i in range(data.objectives.size()):
+		if progress[i] < data.objectives[i].count:
+			all_complete = false
+			break
+			
+	if all_complete:
+		print("Quest objectives complete: " + data.title)
+
+func complete_quest(quest_id: String) -> bool:
+	if not is_quest_active(quest_id):
+		return false
+		
+	var data = get_quest_data(quest_id)
+	
+	# Verify objectives are met
+	var progress = active_quests[quest_id].objectives
+	for i in range(data.objectives.size()):
+		if progress[i] < data.objectives[i].count:
+			print("DEBUG: Quest " + quest_id + " not yet complete")
+			return false
+			
+	# Apply Rewards
+	add_gold(data.rewards.get("gold", 0))
+	add_exp(data.rewards.get("exp", 0)) # Fixed to add_exp instead of add_experience
+	
+	if data.rewards.has("items"):
+		for item in data.rewards.items:
+			add_item(item.id, item.count)
+			
+	# Set flags
+	if data.has("completed_flag"):
+		set_flag(data.completed_flag, true)
+		
+	# Move to completed
+	active_quests.erase(quest_id)
+	completed_quests.append(quest_id)
+	
+	print("Quest Completed: " + data.title)
+	return true
+
+func can_turn_in_quest(quest_id: String) -> bool:
+	if not is_quest_active(quest_id):
+		return false
+		
+	var data = get_quest_data(quest_id)
+	var progress = active_quests[quest_id].objectives
+	
+	for i in range(data.objectives.size()):
+		if progress[i] < data.objectives[i].count:
+			return false
+			
+	return true
+
+# --- Shop System Logic ---
+
+func load_shops_data() -> void:
+	var path = "res://data/shops.json"
+	if not FileAccess.file_exists(path):
+		print("DEBUG: Shops data file not found: " + path)
+		return
+		
+	var file = FileAccess.open(path, FileAccess.READ)
+	var json_string = file.get_as_text()
+	file.close()
+	
+	var json = JSON.new()
+	var error = json.parse(json_string)
+	if error == OK:
+		var data = json.get_data()
+		if data.has("shops"):
+			for shop in data.shops:
+				shops_data[shop.id] = shop
+		print("DEBUG: Loaded " + str(shops_data.size()) + " shops")
+	else:
+		push_error("Failed to parse shops.json: " + json.get_error_message())
+
+func get_shop_data(shop_id: String) -> Dictionary:
+	if shops_data.is_empty():
+		load_shops_data()
+	return shops_data.get(shop_id, {})
+
+func buy_item(item_id: String, price: int) -> bool:
+	if player_gold >= price:
+		player_gold -= price
+		add_item(item_id, 1)
+		gold_changed.emit(player_gold)
+		print("Bought " + item_id + " for " + str(price) + "g")
+		return true
+	else:
+		print("Not enough gold to buy " + item_id)
+		return false
+
+func sell_item(item_id: String, price: int) -> bool:
+	if use_item(item_id): # use_item removes 1 quantity
+		player_gold += price
+		gold_changed.emit(player_gold)
+		print("Sold " + item_id + " for " + str(price) + "g")
+		return true
+	else:
+		print("No " + item_id + " to sell")
+		return false

@@ -1,0 +1,96 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/shop_menu.gd" id="1_shop_menu"]
+
+[node name="ShopUI" type="CanvasLayer"]
+script = ExtResource("1_shop_menu")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -250.0
+offset_right = 400.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Header" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="ShopName" type="Label" parent="Panel/VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "General Store"
+horizontal_alignment = 1
+
+[node name="GoldLabel" type="Label" parent="Panel/VBoxContainer/Header"]
+layout_mode = 2
+text = "Gold: 0g"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+split_offset = 300
+
+[node name="ItemList" type="ItemList" parent="Panel/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+
+[node name="DetailPanel" type="Panel" parent="Panel/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/HSplitContainer/DetailPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemName" type="Label" parent="Panel/VBoxContainer/HSplitContainer/DetailPanel/VBoxContainer"]
+layout_mode = 2
+text = "Item Name"
+horizontal_alignment = 1
+
+[node name="ItemDescription" type="Label" parent="Panel/VBoxContainer/HSplitContainer/DetailPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Select an item to view details."
+autowrap_mode = 3
+
+[node name="PriceLabel" type="Label" parent="Panel/VBoxContainer/HSplitContainer/DetailPanel/VBoxContainer"]
+layout_mode = 2
+text = "Price: 0g"
+
+[node name="ActionButtons" type="HBoxContainer" parent="Panel/VBoxContainer/HSplitContainer/DetailPanel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BuyButton" type="Button" parent="Panel/VBoxContainer/HSplitContainer/DetailPanel/VBoxContainer/ActionButtons"]
+layout_mode = 2
+text = "Buy"
+
+[node name="SellButton" type="Button" parent="Panel/VBoxContainer/HSplitContainer/DetailPanel/VBoxContainer/ActionButtons"]
+layout_mode = 2
+text = "Sell"
+
+[node name="Footer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ExitButton" type="Button" parent="Panel/VBoxContainer/Footer"]
+layout_mode = 2
+text = "Exit Shop"

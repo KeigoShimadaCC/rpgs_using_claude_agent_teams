@@ -1,0 +1,50 @@
+{
+  "quests": [
+    {
+      "id": "q_collect_herbs",
+      "title": "Healing Herbs",
+      "description": "The village healer needs 3 Medicinal Herbs from the forest to make potions.",
+      "start_dialogue_id": "healer_quest_start",
+      "complete_dialogue_id": "healer_quest_end",
+      "objectives": [
+        {
+          "type": "item",
+          "target": "medicinal_herb",
+          "count": 3,
+          "description": "Collect 3 Medicinal Herbs"
+        }
+      ],
+      "rewards": {
+        "gold": 50,
+        "exp": 100,
+        "items": [
+          { "id": "potion", "count": 2 }
+        ]
+      },
+      "completed_flag": "quest_herbs_complete"
+    },
+    {
+      "id": "q_slime_hunt",
+      "title": "Slime Problem",
+      "description": "The guard captain wants you to thin out the slime population.",
+      "start_dialogue_id": "guard_quest_start",
+      "complete_dialogue_id": "guard_quest_end",
+      "objectives": [
+        {
+          "type": "kill",
+          "target": "slime",
+          "count": 5,
+          "description": "Defeat 5 Slimes"
+        }
+      ],
+      "rewards": {
+        "gold": 100,
+        "exp": 150,
+        "items": [
+          { "id": "iron_sword", "count": 1 }
+        ]
+      },
+      "completed_flag": "quest_slimes_complete"
+    }
+  ]
+}

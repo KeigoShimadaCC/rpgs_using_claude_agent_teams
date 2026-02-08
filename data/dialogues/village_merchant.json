@@ -1,0 +1,33 @@
+{
+    "dialogue_id": "village_merchant",
+    "nodes": [
+        {
+            "id": "start",
+            "speaker": "Merchant",
+            "text": "Welcome to the General Store! Need some supplies for your journey?",
+            "choices": [
+                {
+                    "text": "Show me your wares",
+                    "next": "open_shop",
+                    "command": "OPEN_SHOP:village_general_store"
+                },
+                {
+                    "text": "Just looking, thanks.",
+                    "next": "bye"
+                }
+            ]
+        },
+        {
+            "id": "open_shop",
+            "speaker": "Merchant",
+            "text": "Take your time.",
+            "next": null
+        },
+        {
+            "id": "bye",
+            "speaker": "Merchant",
+            "text": "Come back soon!",
+            "next": null
+        }
+    ]
+}
