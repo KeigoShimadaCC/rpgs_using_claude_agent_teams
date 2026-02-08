@@ -91,6 +91,9 @@ func _return_to_overworld() -> void:
 	on_defeat_callback = Callable()
 	is_boss_battle = false
 	previous_scene_path = ""
+	
+	# Reset step counter for grace period after battle
+	GameState.steps_since_battle = 0
 
 ## Get the current battle configuration
 func get_battle_config() -> Dictionary:

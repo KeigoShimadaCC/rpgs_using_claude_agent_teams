@@ -106,6 +106,9 @@ func start_player_turn() -> void:
 		# Auto-execute turn
 		await get_tree().create_timer(0.3).timeout
 		await perform_auto_action()
+		
+		# Continue to victory check / enemy turn
+		_check_victory_and_continue()
 	else:
 		# Enable player action UI for manual control
 		if ui_controller and ui_controller.has_method("enable_action_menu"):
@@ -192,11 +195,11 @@ func perform_auto_action() -> void:
 			await execute_player_skill("heal", 0)
 			return
 		elif GameState.has_item("potion"):
-			execute_player_item("potion")
+			await execute_player_item("potion")
 			return
 		else:
 			# Can't heal, defend
-			execute_player_defend()
+			await execute_player_defend()
 			return
 			
 	# 2. Attack or Skill

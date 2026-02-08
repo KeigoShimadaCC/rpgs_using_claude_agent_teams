@@ -60,7 +60,7 @@ func _physics_process(_delta: float) -> void:
 			var steps = int(distance_accumulator / STEP_DISTANCE)
 			GameState.steps_since_battle += steps
 			distance_accumulator -= steps * STEP_DISTANCE
-			# print("Step taken! Total steps since battle: ", GameState.steps_since_battle)
+			print("Step taken! Total steps since battle: ", GameState.steps_since_battle)
 
 	# Update animation
 	_update_animation(input_direction)
