@@ -84,12 +84,12 @@ dialogue_id = "healer_quest"
 
 [node name="ExitToVillage" type="Area2D" parent="Triggers"]
 position = Vector2(200, 290)
-collision_layer = 0
+collision_layer = 16
 collision_mask = 2
 script = ExtResource("4_trigger")
 trigger_type = 0
-target_map_path = "res://scenes/overworld/map_a_village.tscn"
-target_spawn_marker = "FromDesert"
+target_scene = "res://scenes/overworld/map_a_village.tscn"
+spawn_marker_name = "FromDesert"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/ExitToVillage"]
 shape = SubResource("RectangleShape2D_trigger")
